@@ -1,0 +1,62 @@
+.garden {
+  display: flex;
+
+  .gardenContainer {
+    flex: 6;
+
+    .top {
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+
+      .left {
+        flex: 1;
+        padding: 20px;
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        position: relative;
+
+        .editButton {
+          top: 0;
+          position: absolute;
+          right: 0;
+          padding: 5px;
+          font-size: 13px;
+          color: #1976d2;
+          background-color: #1976d236;
+          font-weight: 600;
+          cursor: pointer;
+        }
+
+        .item {
+          display: flex;
+          gap: 20px;
+
+          .itemImage {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+          }
+
+          .details {
+            .itemTitle {
+              margin-bottom: 10px;
+              color: grey;
+            }
+            .detailItem {
+              margin-bottom: 10px;
+
+              .itemKey {
+                font-weight: bold;
+              }
+            }
+          }
+        }
+      }
+      .right {
+        flex: 2;
+        position: relative;
+      }
+    }
+  }
+}
