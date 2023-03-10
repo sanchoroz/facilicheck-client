@@ -1,0 +1,33 @@
+.widget {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  padding: 10px;
+  height: 100px;
+
+  .center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      font-weight: bold;
+      font-size: 14px;
+      color: rgb(171, 171, 171);
+    }
+
+    .counter {
+      font-weight: 300;
+      font-size: 28px;
+      color: black;
+    }
+
+    .link {
+      font-weight: 300;
+      font-size: 14px;
+      border-bottom: 0.5px solid rgb(223, 223, 223);
+      cursor: pointer;
+    }
+  }
+}
