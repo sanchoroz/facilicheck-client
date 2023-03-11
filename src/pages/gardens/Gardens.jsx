@@ -1,8 +1,7 @@
 import React from 'react';
 import './gardens.scss';
-import axios from '../../axios';
+import instance from '../../instance';
 import Sidebar from '../../components/sidebar/Sidebar';
-import Reports from '../../pages/reports/Reports';
 import Navbar from '../../components/navbar/Navbar';
 import Datatable from '../../components/datatable/Datatable';
 import Button from '@mui/material/Button';
@@ -12,7 +11,7 @@ const Gardens = () => {
   const [gardens, setGardens] = React.useState([]);
 
   React.useEffect(() => {
-    axios.get(`/api/garden/gardens`).then((response) => {
+    instance.get(`/api/garden/gardens`).then((response) => {
       setGardens(response.data);
     });
   }, []);
@@ -22,7 +21,7 @@ const Gardens = () => {
       'Do you want to delete Garden? All related facilities will be deleted as well',
     );
     if (result) {
-      axios.put(`http://localhost:5000/api/garden/delete/${gardenId}`).then((response) => {
+      instance.put(`http://localhost:5000/api/garden/delete/${gardenId}`).then((response) => {
         if (response.status === 200) {
           setGardens((current) => current.filter((g) => g.id === gardenId));
         }

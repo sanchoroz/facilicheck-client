@@ -1,7 +1,6 @@
 import React from 'react';
 import './facilities.scss';
-import axios from '../../axios';
-import { useNavigate } from 'react-router-dom';
+import instance from '../../instance';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import Datatable from '../../components/datatable/Datatable';
@@ -11,7 +10,7 @@ const Facilities = () => {
   const [facilities, setFacilities] = React.useState([]);
 
   React.useEffect(() => {
-    axios.get(`/api/facility/facilities`).then((response) => {
+    instance.get(`/api/facility/facilities`).then((response) => {
       setFacilities(response.data);
     });
   }, []);
@@ -19,7 +18,7 @@ const Facilities = () => {
   const handleClick = (event, facilityId) => {
     let result = window.confirm('Do you want to delete Facility?');
     if (result) {
-      axios.put(`http://localhost:5000/api/facility/delete/${facilityId}`);
+      instance.put(`http://localhost:5000/api/facility/delete/${facilityId}`);
       setFacilities((current) => current.filter((f) => f.id === facilityId));
     }
   };

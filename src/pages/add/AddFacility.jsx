@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from '../../axios';
+import axios from '../../instance';
 import './add.scss';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
@@ -50,7 +50,7 @@ const AddFacility = ({ inputs }) => {
 
   const postData = async (formData) => {
     try {
-      const response = await axios.post(`/api/facility/create/${selectedOption}`, formData);
+      await axios.post(`/api/facility/create/${selectedOption}`, formData);
     } catch (error) {
       console.error(error);
     }

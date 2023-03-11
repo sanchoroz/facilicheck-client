@@ -1,11 +1,9 @@
 import React from 'react';
 import './reports.scss';
-import axios from '../../axios';
+import axios from '../../instance';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
-import Datatable from '../../components/datatable/Datatable';
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
 import Reportstable from '../../components/reportstable/Reportstable';
 
 const Reports = () => {

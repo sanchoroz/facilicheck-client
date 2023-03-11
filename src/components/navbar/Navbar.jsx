@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { selectIsAuth, logout } from '../../redux/slices/auth';
 import Button from '@mui/material/Button';
 import './navbar.scss';

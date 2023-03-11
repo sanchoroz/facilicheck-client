@@ -1,6 +1,6 @@
 import React from 'react';
 import './garden.scss';
-import axios from '../../axios';
+import instance from '../../instance';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import Datatable from '../../components/datatable/Datatable';
@@ -14,13 +14,13 @@ const Garden = ({ gardenId }) => {
 
   React.useEffect(() => {
     console.log('gardenId', gardenId);
-    axios.get(`/api/garden/${gardenId}`).then((response) => {
+    instance.get(`/api/garden/${gardenId}`).then((response) => {
       setGardens(response.data);
     });
   }, []);
 
   React.useEffect(() => {
-    axios.get(`/api/facility/facilities`).then((response) => {
+    instance.get(`/api/facility/facilities`).then((response) => {
       setFacility(response.data);
     });
   }, []);
