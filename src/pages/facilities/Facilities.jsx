@@ -14,7 +14,7 @@ const Facilities = () => {
     axios.get(`/api/facility/facilities`).then((response) => {
       setFacilities(response.data);
     });
-  }, [facilities]);
+  }, []);
 
   const handleClick = (event, facilityId) => {
     let result = window.confirm('Do you want to delete Facility?');

@@ -7,7 +7,6 @@ import Navbar from '../../components/navbar/Navbar';
 import Datatable from '../../components/datatable/Datatable';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-import { PDFDownloadLink } from '@react-pdf/renderer';
 
 const Gardens = () => {
   const [gardens, setGardens] = React.useState([]);
@@ -16,7 +15,7 @@ const Gardens = () => {
     axios.get(`/api/garden/gardens`).then((response) => {
       setGardens(response.data);
     });
-  }, [gardens]);
+  }, []);
 
   const handleClick = (event, gardenId) => {
     let result = window.confirm(
