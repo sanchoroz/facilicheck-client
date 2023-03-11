@@ -1,6 +1,6 @@
 import React from 'react';
 import './reports.scss';
-import axios from '../../instance';
+import instance from '../../instance';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import Button from '@mui/material/Button';
@@ -12,7 +12,7 @@ const Reports = () => {
   function handleButtonClick() {}
 
   React.useEffect(() => {
-    axios.get(`/api/report/monthly/all`).then((response) => {
+    instance.get(`/api/report/monthly/all`).then((response) => {
       setReports(response.data);
       console.log('reports: ', reports);
     });

@@ -1,6 +1,6 @@
 import React from 'react';
 import './createmonthlyreport.scss';
-import axios from '../../instance';
+import instance from '../../instance';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import { useSelector } from 'react-redux';
@@ -37,7 +37,7 @@ const CreateMonthlyReport = ({ inputs }) => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    axios
+    instance
       .get('/api/garden/gardens')
       .then((response) => {
         setGardens(response.data);
@@ -82,7 +82,7 @@ const CreateMonthlyReport = ({ inputs }) => {
   }, [report]);
 
   const getGarden = () => {
-    axios
+    instance
       .get(`/api/garden/${selectedOption}`)
       .then((response) => {
         setGarden(response.data);
@@ -144,7 +144,7 @@ const CreateMonthlyReport = ({ inputs }) => {
 
   const postData = async () => {
     try {
-      const response = await axios.post(`/api/report/monthly/create`, report);
+      const response = await instance.post(`/api/report/monthly/create`, report);
     } catch (error) {
       console.error(error);
     }

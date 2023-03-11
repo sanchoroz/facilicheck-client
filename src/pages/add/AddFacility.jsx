@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from '../../instance';
+import instance from '../../instance';
 import './add.scss';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
@@ -15,7 +15,7 @@ const AddFacility = ({ inputs }) => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    axios
+    instance
       .get('/api/garden/gardens')
       .then((response) => {
         setData(response.data);
@@ -50,7 +50,7 @@ const AddFacility = ({ inputs }) => {
 
   const postData = async (formData) => {
     try {
-      await axios.post(`/api/facility/create/${selectedOption}`, formData);
+      await instance.post(`/api/facility/create/${selectedOption}`, formData);
     } catch (error) {
       console.error(error);
     }
