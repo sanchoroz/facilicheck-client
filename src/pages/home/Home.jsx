@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from '../../axios';
+import instance from '../../instance';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import Widget from '../../components/widget/Widget';
@@ -14,19 +14,19 @@ const Home = () => {
   //console.log('data: ', data);
 
   React.useEffect(() => {
-    axios.get(`/api/auth/users`).then((response) => {
+    instance.get(`/api/auth/users`).then((response) => {
       setUser(response.data);
     });
   }, []);
 
   React.useEffect(() => {
-    axios.get(`/api/garden/gardens`).then((response) => {
+    instance.get(`/api/garden/gardens`).then((response) => {
       setGardens(response.data);
     });
   }, []);
 
   React.useEffect(() => {
-    axios.get(`/api/facility/facilities`).then((response) => {
+    instance.get(`/api/facility/facilities`).then((response) => {
       setIFacilities(response.data);
     });
   }, []);

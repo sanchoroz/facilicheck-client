@@ -1,0 +1,14 @@
+.card {
+  margin: 10px;
+
+  span {
+    font-weight: 600;
+  }
+
+  .failed {
+    font-size: 18px;
+    color: crimson;
+    margin-left: 20px;
+    display: flex;
+  }
+}

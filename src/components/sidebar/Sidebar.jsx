@@ -1,10 +1,9 @@
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './sidebar.scss';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import DeckIcon from '@mui/icons-material/Deck';
 import AttractionsIcon from '@mui/icons-material/Attractions';
-import FolderSharedIcon from '@mui/icons-material/FolderShared';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import GroupIcon from '@mui/icons-material/Group';
 
