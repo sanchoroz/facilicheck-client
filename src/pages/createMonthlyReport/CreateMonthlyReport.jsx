@@ -32,6 +32,7 @@ const CreateMonthlyReport = ({ inputs }) => {
     previousIssue: '',
     areaStatus: '',
     facilities: {},
+    gardenId: '',
   });
 
   const navigate = useNavigate();
@@ -58,9 +59,12 @@ const CreateMonthlyReport = ({ inputs }) => {
   React.useEffect(() => {
     if (selectedOption) {
       setFacilities(garden.facilities);
+      console.log('data', data);
       setReport((prevState) => ({
         ...prevState,
+        ['name']: data.name,
         ['gardenName']: garden.siteName,
+        ['gardenId']: garden._id,
         ['date']: new Intl.DateTimeFormat('en-US', {
           year: 'numeric',
           month: '2-digit',
@@ -144,7 +148,33 @@ const CreateMonthlyReport = ({ inputs }) => {
 
   const postData = async () => {
     try {
-      const response = await instance.post(`/api/report/monthly/create`, report);
+      let isFailed = false;
+      for (let key in garden) {
+        console.log('itterate');
+        if (Array.isArray(garden[key])) {
+          isFailed = garden[key].some((item) => item.isFailed === true);
+          // break out of the loop as soon as an item with isFailed === true is found
+          if (isFailed) {
+            console.log('failed');
+            await updateGarden(isFailed);
+          } else {
+            console.log('pass');
+            await updateGarden(isFailed);
+          }
+        }
+      }
+
+      await instance.post(`/api/report/monthly/create`, report);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const updateGarden = async (status) => {
+    try {
+      await instance.put(`/api/garden/update/${report.gardenId}`, {
+        hasFailedFacilities: status,
+      });
     } catch (error) {
       console.error(error);
     }
@@ -239,7 +269,7 @@ const CreateMonthlyReport = ({ inputs }) => {
                     </div>
                     <div className="formInput">
                       <label>Reporter</label>
-                      <input type="text" value={report.reporter} disabled />
+                      <input type="text" value={report.name} disabled />
                     </div>
                     <div className="formInput">
                       <label>Check number</label>
