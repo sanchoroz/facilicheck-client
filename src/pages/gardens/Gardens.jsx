@@ -46,6 +46,10 @@ const Gardens = () => {
     }
   };
 
+  function handleDelete(componentId) {
+    setGardens((prevState) => prevState.filter((component) => component._id !== componentId));
+  }
+
   return (
     <div className="gardens">
       <Sidebar />
@@ -72,7 +76,7 @@ const Gardens = () => {
         <div className="cardsContainer">
           {gardens &&
             gardens.map((item, index) => (
-              <GardenCard key={index} garden={item}>
+              <GardenCard key={index} garden={item} onDelete={handleDelete}>
                 {item.siteName}
               </GardenCard>
             ))}

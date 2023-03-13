@@ -11,16 +11,15 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import NotificationImportantIcon from '@mui/icons-material/NotificationImportant';
 
-const GardenCard = ({ garden }) => {
-  const [activeType, changeActiveType] = React.useState(0);
+const GardenCard = (props) => {
+  const { garden, onDelete } = props;
   const [item, setItem] = React.useState(garden);
-  const pizzaTypes = ['Thin', 'Regular'];
 
   React.useEffect(() => {
     console.log('item', item);
   }, [item]);
 
-  const handleClick = (event, gardenId) => {
+  function handleDelete(event, gardenId) {
     let result = window.confirm(
       'Do you want to delete Garden? All related facilities will be deleted as well',
     );
@@ -28,11 +27,11 @@ const GardenCard = ({ garden }) => {
       instance.put(`http://localhost:5000/api/garden/delete/${gardenId}`).then((response) => {
         if (response.status === 200) {
           //setGardens((current) => current.filter((g) => g.id === gardenId));
-          console.log('set state gardens...');
+          onDelete(gardenId);
         }
       });
     }
-  };
+  }
 
   return (
     <>
@@ -61,7 +60,7 @@ const GardenCard = ({ garden }) => {
             <Button
               size="small"
               onClick={(event) => {
-                handleClick(event, item._id);
+                handleDelete(event, item._id);
               }}>
               Delete
             </Button>
