@@ -19,19 +19,19 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar">
+    <div className="navbar" dir="rtl">
       <div className="wrapper">
         <div className="items">
           {isAuth ? (
             <>
-              <Button onClick={onClickLogout} size="small" variant="contained">
-                Logout
+              <Button onClick={onClickLogout} size="small" variant="contained" dir="rtl">
+                יציאה
               </Button>
             </>
           ) : (
             <Link to="/login">
               <Button size="small" variant="contained">
-                Login
+                התחברות
               </Button>
             </Link>
           )}

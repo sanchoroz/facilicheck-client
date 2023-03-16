@@ -9,49 +9,53 @@ import GroupIcon from '@mui/icons-material/Group';
 
 const Sidebar = () => {
   return (
-    <div className="sidebar">
+    <div className="sidebar" dir="rtl">
       <div className="top">
         <Link to="/" style={{ textDecoration: 'none' }}>
-          <span className="logo">Logo</span>
+          <img
+            src="https://static.wixstatic.com/media/2358ad_d486ae5670a5445495c0a1cf3865d3b0~mv2.png"
+            alt="logo facilicheck"
+            width={110}
+          />
         </Link>
       </div>
       <hr />
       <div className="center">
         <ul>
-          <p className="title">MAIN</p>
+          <p className="title">ראשי</p>
           <Link to="/" style={{ textDecoration: 'none' }}>
             <li>
               <DashboardIcon className="icon" />
-              <span>Dashboard</span>
+              <span>לוח מחוונים</span>
             </li>
           </Link>
-          <p className="title">MAINTENANCE</p>
+          <p className="title">כללי</p>
           <Link to="/gardens" style={{ textDecoration: 'none' }}>
             <li>
               <AttractionsIcon className="icon" />
-              <span>Gardens</span>
+              <span>גנים</span>
             </li>
           </Link>
           <Link to="/facilities" style={{ textDecoration: 'none' }}>
             <li>
               <DeckIcon className="icon" />
-              <span>Facilities</span>
+              <span>מתקנים</span>
             </li>
           </Link>
           <Link to="/reports" style={{ textDecoration: 'none' }}>
             <li>
               <QueryStatsIcon className="icon" />
-              <span>Reports</span>
+              <span>דוחות</span>
             </li>
           </Link>
-          <p className="title">SERVICE</p>
+          <p className="title">שרות</p>
           <li>
             <QueryStatsIcon className="icon" />
-            <span>Logs</span>
+            <span>לוגים</span>
           </li>
           <li>
             <GroupIcon className="icon" />
-            <span>Users</span>
+            <span>משתמשים</span>
           </li>
         </ul>
       </div>

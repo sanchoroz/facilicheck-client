@@ -2,6 +2,7 @@ import React from 'react';
 import './reports.scss';
 import instance from '../../instance';
 import Sidebar from '../../components/sidebar/Sidebar';
+import CreateGarden from '../add/CreateGarden';
 import Navbar from '../../components/navbar/Navbar';
 import Button from '@mui/material/Button';
 import Reportstable from '../../components/reportstable/Reportstable';
@@ -25,13 +26,13 @@ const Reports = () => {
   }, [reports]);
 
   const columns = [
-    { field: 'gardenName', headerName: 'gardenName', width: 250 },
-    { field: 'reporter', headerName: 'reporter', width: 200 },
-    { field: 'reportNumber', headerName: 'reportNumber', width: 150 },
-    { field: 'date', headerName: 'date', width: 250 },
+    { field: 'gardenName', headerName: 'שם הגן', width: 150 },
+    { field: 'reporter', headerName: 'מדווח', width: 200 },
+    { field: 'reportNumber', headerName: 'מספר דוח', width: 150 },
+    { field: 'date', headerName: 'תאריך', width: 250 },
     {
       field: 'action',
-      headerName: 'Action',
+      headerName: 'פעולות',
       width: 250,
       renderCell: (cellValues) => {
         return (
@@ -44,7 +45,7 @@ const Reports = () => {
                 fontSize: '12px',
                 textDecoration: 'none',
               }}>
-              PDF
+              צפיה
             </Button>
           </div>
         );
@@ -53,7 +54,7 @@ const Reports = () => {
   ];
 
   return (
-    <div className="reports">
+    <div className="reports" dir="rtl">
       <Sidebar />
       <div className="reportsContainer">
         <Navbar />

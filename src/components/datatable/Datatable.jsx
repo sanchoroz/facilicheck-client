@@ -7,20 +7,20 @@ import Button from '@mui/material/Button';
 const Datatable = ({ columns, items, type }) => {
   const url = type === 'facility' ? `/facilities/addFacility` : `/gardens/addGarden`;
   return (
-    <div className="datatable">
+    <div className="datatable" dir="rtl">
       <div className="datatableTitle">
-        Listed {type}
+        מתקני הגן
         <Link to={url} style={{ textDecoration: 'none' }} className="link">
           <Button
             className="datatableTitle"
             size="small"
             variant="contained"
             style={{
-              backgroundColor: 'green',
+              backgroundColor: '#1dbf73',
               fontSize: '12px',
               textDecoration: 'none',
             }}>
-            Add New {type}
+            צור מתקן חדש
           </Button>
         </Link>
       </div>

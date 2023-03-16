@@ -40,12 +40,12 @@ const Login = () => {
   return (
     <Paper classes={{ root: 'root' }}>
       <Typography classes={{ root: 'title' }} variant="h5">
-        Login
+        התחברות
       </Typography>
       <form onSubmit={handleSubmit(onSubmitForm)}>
         <TextField
           className="field"
-          label="E-Mail"
+          label="אימייל"
           error={Boolean(errors.email?.message)}
           helperText={errors.email?.message}
           {...register('email', { required: 'set email' })}
@@ -53,14 +53,14 @@ const Login = () => {
         />
         <TextField
           className="field"
-          label="password"
+          label="סיסמה"
           error={Boolean(errors.password?.message)}
           helperText={errors.password?.message}
           {...register('password', { required: 'set password' })}
           fullWidth
         />
         <Button type="submit" size="large" variant="contained" fullWidth>
-          Login
+          התחבר
         </Button>
       </form>
     </Paper>

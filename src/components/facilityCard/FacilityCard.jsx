@@ -1,5 +1,5 @@
 import React from 'react';
-import './gardencard.scss';
+import './facilitycard.scss';
 import instance from '../../instance';
 import { Link } from 'react-router-dom';
 import Tooltip from '@mui/material/Tooltip';
@@ -11,23 +11,17 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import NotificationImportantIcon from '@mui/icons-material/NotificationImportant';
 
-const GardenCard = (props) => {
-  const { garden, onDelete } = props;
-  const [item, setItem] = React.useState(garden);
+const FacilityCard = (props) => {
+  const { facility, onDelete } = props;
+  const [item, setItem] = React.useState(facility);
 
-  React.useEffect(() => {
-    console.log('item', item);
-  }, [item]);
-
-  function handleDelete(event, gardenId) {
-    let result = window.confirm(
-      'Do you want to delete Garden? All related facilities will be deleted as well',
-    );
+  function handleDelete(event, facilityId) {
+    let result = window.confirm('Do you want to delete Facility?');
     if (result) {
-      instance.put(`http://localhost:5000/api/garden/delete/${gardenId}`).then((response) => {
+      instance.put(`http://localhost:5000/api/facility/delete/${facilityId}`).then((response) => {
         if (response.status === 200) {
           //setGardens((current) => current.filter((g) => g.id === gardenId));
-          onDelete(gardenId);
+          onDelete(facilityId);
         }
       });
     }
@@ -40,20 +34,20 @@ const GardenCard = (props) => {
           <CardMedia component="img" alt="garden cover image" height="200" image={item.imageUrl} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              {item.siteName}
+              {item.facilityName}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              כתובת: {item.address}
+              מס''ד המתקן: {item.sku}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              מס''ד האתר: {item.serialNumber}
+              שם היצרן: {item.manufacturer}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              כמות מתקנים: {item.facilities.length}
+              שייך לגן:
             </Typography>
           </CardContent>
           <CardActions>
-            <Link to="/garden" state={{ stateParam: item._id }} className="link">
+            <Link to="/facility" state={{ stateParam: item._id }} className="link">
               <Button size="medium">צפיה</Button>
             </Link>
             <Button size="medium">דוחות</Button>
@@ -64,9 +58,9 @@ const GardenCard = (props) => {
               }}>
               הסר
             </Button>
-            {item.hasFailedFacilities && (
+            {item.isFailed && (
               <div className="failed">
-                <Tooltip title="Garden has a failed facilities">
+                <Tooltip title="Facility is failed">
                   <NotificationImportantIcon className="icon" />
                 </Tooltip>
               </div>
@@ -78,4 +72,4 @@ const GardenCard = (props) => {
   );
 };
 
-export default GardenCard;
+export default FacilityCard;

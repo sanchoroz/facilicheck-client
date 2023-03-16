@@ -51,24 +51,24 @@ const Gardens = () => {
   }
 
   return (
-    <div className="gardens">
+    <div className="gardens" dir="rtl">
       <Sidebar />
       <div className="gardensContainer">
         <Navbar />
 
         <div className="gardensTitle">
-          Gardens
-          <Link to="/gardens/addGarden" style={{ textDecoration: 'none' }} className="link">
+          גנים
+          <Link to="/gardens/create" style={{ textDecoration: 'none' }} className="link">
             <Button
               className="createButton"
               size="small"
               variant="contained"
               style={{
-                backgroundColor: 'green',
+                backgroundColor: '#1dbf73',
                 fontSize: '12px',
                 textDecoration: 'none',
               }}>
-              Create New Garden
+              צור גן חדש
             </Button>
           </Link>
         </div>
@@ -76,7 +76,7 @@ const Gardens = () => {
         <div className="cardsContainer">
           {gardens &&
             gardens.map((item, index) => (
-              <GardenCard key={index} garden={item} onDelete={handleDelete}>
+              <GardenCard dir="rtl" key={index} garden={item} onDelete={handleDelete}>
                 {item.siteName}
               </GardenCard>
             ))}

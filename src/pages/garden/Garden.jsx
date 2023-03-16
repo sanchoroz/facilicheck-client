@@ -30,43 +30,47 @@ const Garden = () => {
   }, [garden]);
 
   const columnsFacilites = [
-    { field: '_id', headerName: 'ID', width: 250 },
-    { field: 'facilityName', headerName: 'Facility name', width: 200 },
-    { field: 'manufacturer', headerName: 'Manufacturer', width: 150 },
-    { field: 'sku', headerName: 'SKU', width: 100 },
-    { field: 'standard', headerName: 'Standart', width: 100 },
-    { field: 'status', headerName: 'Status', width: 100 },
+    { field: 'facilityName', headerName: 'שם המתקן', width: 150 },
+    { field: 'manufacturer', headerName: 'יצרן', width: 150 },
+    { field: 'manufacturerType', headerName: 'סוג היצרן', width: 150 },
+    { field: 'standard', headerName: 'תקן המתקן', width: 150 },
+    { field: 'basis', headerName: 'ביסוס המתקן', width: 150 },
+    { field: 'isFailed', headerName: 'האם תקין', width: 150 },
   ];
 
   const columnsReports = [
-    { field: '_id', headerName: 'ID', width: 250 },
-    { field: 'facilityName', headerName: 'Facility name', width: 200 },
+    { field: 'reporter', headerName: 'שם המדווח', width: 150 },
+    { field: 'gardenName', headerName: 'שם הגן', width: 150 },
+    { field: 'date', headerName: 'תאריך בדיקה', width: 150 },
+    { field: 'reportNumber', headerName: 'מס"ד הדוח', width: 150 },
   ];
 
   return (
     <>
       {garden && (
-        <div className="garden">
+        <div className="garden" dir="rtl">
           <Sidebar />
           <div className="gardenContainer">
             <Navbar />
             <div className="top">
               <div className="left">
-                <div className="editButton">Edit</div>
+                <div className="editButton">ערוך</div>
                 <div className="item">
                   <img src={garden.imageUrl} alt="" className="itemImage" />
                   <div className="details">
                     <h3 className="itemTitle">{garden.siteName}</h3>
                     <div className="detailItem">
-                      <span className="itemKey">Status: {garden.status}</span>
-                      <span className="itemValue">pass</span>
+                      <span className="itemKey">סטטוס:</span>
+                      <span className="itemValue">
+                        {garden.hasFailedFacilities ? 'תקין' : 'לא תקין'}
+                      </span>
                     </div>
                     <div className="detailItem">
-                      <span className="itemKey">Next monthly check:</span>
+                      <span className="itemKey">בדיקה חודשית הבאה:</span>
                       <span className="itemValue">12.02.23</span>
                     </div>
                     <div className="detailItem">
-                      <span className="itemKey">Next yearly check:</span>
+                      <span className="itemKey">בדיקה שנתית הבאה:</span>
                       <span className="itemValue">12.02.23</span>
                     </div>
                   </div>

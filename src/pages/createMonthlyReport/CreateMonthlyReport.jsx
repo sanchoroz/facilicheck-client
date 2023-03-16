@@ -48,8 +48,6 @@ const CreateMonthlyReport = ({ inputs }) => {
       });
   }, []);
 
-  // http://localhost:5000/api/monthlyReport/create
-
   React.useEffect(() => {
     if (selectedOption) {
       getGarden();
@@ -73,7 +71,7 @@ const CreateMonthlyReport = ({ inputs }) => {
           minute: '2-digit',
           second: '2-digit',
         }).format(timestamp),
-        ['reporter']: data.email,
+        ['reporter']: data.name,
         ['reportNumber']: getRandomInt(234234234, 33242342546),
       }));
     }
@@ -187,14 +185,14 @@ const CreateMonthlyReport = ({ inputs }) => {
   }
 
   return (
-    <div className="report">
+    <div className="report" dir="rtl">
       <Sidebar />
       <div className="reportContainer">
         <Navbar />
         {!selectedOption ? (
           <Paper elevation={1} className="title">
             <FormControl sx={{ m: 1, width: 300 }}>
-              <InputLabel id="garden-select-label">Select Garden</InputLabel>
+              <InputLabel id="garden-select-label">בחר גן</InputLabel>
               <Select
                 labelId="garden-select-label"
                 id="garden-select"
@@ -212,9 +210,9 @@ const CreateMonthlyReport = ({ inputs }) => {
         ) : (
           <>
             <Paper elevation={1} className="title">
-              <h1>Create new report</h1>
+              <h1>צור דוח חדש</h1>
             </Paper>
-            <Paper elevation={2} className="addBlock">
+            <Paper elevation={2} className="addBlock" dir="rtl">
               <div className="left">
                 <form onSubmit={handleSubmit}>
                   {fields.map((field, index) => {
@@ -237,7 +235,7 @@ const CreateMonthlyReport = ({ inputs }) => {
                         <div className="formInput" key={facility._id}>
                           <label>{facility.facilityName}</label>
                           <FormControlLabel
-                            label="Check is failed"
+                            label="בדיקה נכשלה"
                             control={
                               <Checkbox
                                 checked={facility.isFailed}
@@ -249,7 +247,7 @@ const CreateMonthlyReport = ({ inputs }) => {
                             <input
                               type="text"
                               value={facility.issueDescription}
-                              placeholder="Please add failure reason"
+                              placeholder="ציין את הביות במתקן"
                               name={facility.facilityName}
                               onChange={(event) => handleFieldChange(index, event)}
                             />
@@ -257,26 +255,26 @@ const CreateMonthlyReport = ({ inputs }) => {
                         </div>
                       );
                     })}
-                  <button type="submit">Send</button>
+                  <button type="submit">שלח</button>
                 </form>
               </div>
               {garden && (
                 <div className="right">
                   <div className="gardenInfo">
                     <div className="formInput">
-                      <label>Garden name</label>
+                      <label>שם הגן</label>
                       <input type="text" value={report.gardenName} disabled />
                     </div>
                     <div className="formInput">
-                      <label>Reporter</label>
+                      <label>שם המדווח</label>
                       <input type="text" value={report.name} disabled />
                     </div>
                     <div className="formInput">
-                      <label>Check number</label>
+                      <label>מס"ד הדוח</label>
                       <input type="text" value={report.reportNumber} disabled />
                     </div>
                     <div className="formInput">
-                      <label>Date</label>
+                      <label>תאריך בדיקה</label>
                       <input type="text" value={report.date} disabled />
                     </div>
                   </div>

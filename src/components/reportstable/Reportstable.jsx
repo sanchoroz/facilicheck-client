@@ -9,18 +9,18 @@ const Reportstable = ({ columns, items }) => {
   return (
     <div className="reportstable">
       <div className="reportstableTitle">
-        <div className="left">Listed Reports</div>
+        <div className="left">דוחות שהונפקו</div>
         <div className="right">
           <Link to="/reports/create/monthly" style={{ textDecoration: 'none' }} className="link">
             <Button
               size="small"
               variant="contained"
               style={{
-                backgroundColor: 'green',
+                backgroundColor: '#1dbf73',
                 fontSize: '12px',
                 textDecoration: 'none',
               }}>
-              Add New Monthly Report
+              צור דוח חודשי
             </Button>
           </Link>
           <Link to="/reports/create/yearly" style={{ textDecoration: 'none' }} className="link">
@@ -28,11 +28,11 @@ const Reportstable = ({ columns, items }) => {
               size="small"
               variant="contained"
               style={{
-                backgroundColor: 'green',
+                backgroundColor: '#1dbf73',
                 fontSize: '12px',
                 textDecoration: 'none',
               }}>
-              Add New Yearly Report
+              צור דוח שנתי
             </Button>
           </Link>
         </div>

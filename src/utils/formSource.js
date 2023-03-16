@@ -36,16 +36,16 @@ export const yearlyReportInputs = [
 export const monthlyReportInputs = [
   {
     id: 1,
-    label: 'Previous issue',
+    label: 'בעיות קודמות',
     type: 'text',
-    placeholder: 'describe issue',
+    placeholder: 'תאר בעיה',
     name: 'previousIssue',
   },
   {
     id: 2,
-    label: 'Area status',
+    label: 'מצב שטח גן כללי',
     type: 'text',
-    placeholder: 'Describe garden area general status',
+    placeholder: 'תאר את מצב השטח הכללי',
     name: 'areaStatus',
   },
 ];

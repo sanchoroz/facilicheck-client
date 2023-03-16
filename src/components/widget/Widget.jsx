@@ -9,25 +9,25 @@ const Widget = ({ type, amount }) => {
   switch (type) {
     case 'users':
       data = {
-        title: 'Users',
+        title: 'משתמשים',
         amount: amount.length,
-        linkText: 'See All Users',
+        linkText: 'צפה כל המשתמשים',
         link: '/users',
       };
       break;
     case 'gardens':
       data = {
-        title: 'Gardens',
+        title: 'גנים',
         amount: amount.length,
-        linkText: 'See All Gardens',
+        linkText: 'צפה בכל הגנים',
         link: '/gardens',
       };
       break;
     case 'facilities':
       data = {
-        title: 'Facilities',
+        title: 'מתקנים',
         amount: amount.length,
-        linkText: 'See All Facilities',
+        linkText: 'צפה בכל המתקנים',
         link: '/facilities',
       };
       break;

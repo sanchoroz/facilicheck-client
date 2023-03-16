@@ -4,7 +4,7 @@ import './datatable-reports.scss';
 
 const DatatableReports = ({ columns, items }) => {
   return (
-    <div className="datatableReports">
+    <div className="datatableReports" dir="rtl">
       <div style={{ height: 300, width: '100%' }}>
         <DataGrid
           rows={items}

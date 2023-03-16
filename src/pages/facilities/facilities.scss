@@ -3,5 +3,29 @@
 
   .facilitiesContainer {
     flex: 6;
+    width: calc(100vw - 100px);
+    height: 100%;
+    background-color: #fff;
+
+    .facilityTitle {
+      font-size: 20px;
+      color: black;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 15px 0px 15px;
+
+      .createButton {
+        color: white;
+      }
+    }
+
+    .cardsContainer {
+      display: flex;
+      margin-top: 15px;
+      align-items: center;
+      flex-wrap: wrap;
+      align-content: space-between;
+    }
   }
 }
