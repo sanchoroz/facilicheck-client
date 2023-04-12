@@ -13,14 +13,12 @@ import NotificationImportantIcon from '@mui/icons-material/NotificationImportant
 
 const FacilityCard = (props) => {
   const { facility, onDelete } = props;
-  const [item, setItem] = React.useState(facility);
 
   function handleDelete(event, facilityId) {
     let result = window.confirm('Do you want to delete Facility?');
     if (result) {
       instance.put(`http://localhost:5000/api/facility/delete/${facilityId}`).then((response) => {
         if (response.status === 200) {
-          //setGardens((current) => current.filter((g) => g.id === gardenId));
           onDelete(facilityId);
         }
       });
@@ -29,36 +27,41 @@ const FacilityCard = (props) => {
 
   return (
     <>
-      {item && (
+      {facility && (
         <Card sx={{ width: 300 }} classes={{ root: 'card' }} dir="rtl">
-          <CardMedia component="img" alt="garden cover image" height="200" image={item.imageUrl} />
+          <CardMedia
+            component="img"
+            alt="garden cover image"
+            height="200"
+            image={facility.imageUrl}
+          />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              {item.facilityName}
+              {facility.facilityName}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              מס''ד המתקן: {item.sku}
+              מס''ד המתקן: {facility.sku}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              שם היצרן: {item.manufacturer}
+              שם היצרן: {facility.manufacturer}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              שייך לגן:
+              שייך לגן: {facility.garden.siteName}
             </Typography>
           </CardContent>
           <CardActions>
-            <Link to="/facility" state={{ stateParam: item._id }} className="link">
+            <Link to="/facility" state={{ stateParam: facility._id }} className="link">
               <Button size="medium">צפיה</Button>
             </Link>
             <Button size="medium">דוחות</Button>
             <Button
               size="medium"
               onClick={(event) => {
-                handleDelete(event, item._id);
+                handleDelete(event, facility._id);
               }}>
               הסר
             </Button>
-            {item.isFailed && (
+            {facility.isFailed && (
               <div className="failed">
                 <Tooltip title="Facility is failed">
                   <NotificationImportantIcon className="icon" />

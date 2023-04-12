@@ -4,30 +4,20 @@ import instance from '../../instance';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import Datatable from '../../components/datatable/Datatable';
-import DatatableReports from '../../components/datatable reports/DatatableReports';
+import Reportstable from '../../components/reportstable/Reportstable';
 import { useParams, useLocation } from 'react-router-dom';
 
 const Garden = () => {
   const { type } = useParams();
   const stateParamVal = useLocation().state.stateParam;
-  console.log('stateParamVal', stateParamVal);
-
-  const [facilities, setFacility] = React.useState([]);
-  const [garden, setGardens] = React.useState([]);
+  const [garden, setGarden] = React.useState([]);
 
   React.useEffect(() => {
     instance.get(`/api/garden/${stateParamVal}`).then((response) => {
-      setGardens(response.data);
+      setGarden(response.data);
+      console.log(response.data);
     });
   }, []);
-
-  React.useEffect(() => {
-    if (garden) {
-      instance.get(`/api/facility/facilities`).then((response) => {
-        setFacility(response.data);
-      });
-    }
-  }, [garden]);
 
   const columnsFacilites = [
     { field: 'facilityName', headerName: 'שם המתקן', width: 150 },
@@ -77,11 +67,11 @@ const Garden = () => {
                 </div>
               </div>
               <div className="right">
-                <DatatableReports columns={columnsReports} items={facilities} />
+                {/* <Reportstable columns={columnsReports} items={garden.facilities} /> */}
               </div>
             </div>
             <div className="bottom">
-              <Datatable columns={columnsFacilites} items={facilities} type="facility" />
+              <Datatable columns={columnsFacilites} items={garden.facilities} type="facility" />
             </div>
           </div>
         </div>

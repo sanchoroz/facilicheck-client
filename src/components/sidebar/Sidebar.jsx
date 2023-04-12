@@ -53,10 +53,12 @@ const Sidebar = () => {
             <QueryStatsIcon className="icon" />
             <span>לוגים</span>
           </li>
-          <li>
-            <GroupIcon className="icon" />
-            <span>משתמשים</span>
-          </li>
+          <Link to="/users" style={{ textDecoration: 'none' }}>
+            <li>
+              <GroupIcon className="icon" />
+              <span>משתמשים</span>
+            </li>
+          </Link>
         </ul>
       </div>
     </div>

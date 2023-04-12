@@ -4,31 +4,58 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import Widget from '../../components/widget/Widget';
 import './home.scss';
+import axios from 'axios';
 
 const Home = () => {
-  //const data = useSelector((state) => state.auth.data);
   const [users, setUser] = React.useState([]);
   const [gardens, setGardens] = React.useState([]);
   const [facilities, setIFacilities] = React.useState([]);
 
-  //console.log('data: ', data);
+  const cancelToken = axios.CancelToken.source();
 
   React.useEffect(() => {
-    instance.get(`/api/auth/users`).then((response) => {
-      setUser(response.data);
-    });
-  }, []);
+    instance
+      .get(`/api/auth/users`, { cancelToken: cancelToken.token })
+      .then((response) => {
+        setUser(response.data);
+      })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.log('users request canceled');
+        } else {
+          console.log(err);
+        }
+      });
 
-  React.useEffect(() => {
-    instance.get(`/api/garden/gardens`).then((response) => {
-      setGardens(response.data);
-    });
-  }, []);
+    instance
+      .get(`/api/garden/gardens`, { cancelToken: cancelToken.token })
+      .then((response) => {
+        setGardens(response.data);
+      })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.log('gardens request canceled');
+        } else {
+          console.log(err);
+        }
+      });
 
-  React.useEffect(() => {
-    instance.get(`/api/facility/facilities`).then((response) => {
-      setIFacilities(response.data);
-    });
+    instance
+      .get(`/api/facility/facilities`, { cancelToken: cancelToken.token })
+      .then((response) => {
+        setIFacilities(response.data);
+      })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.log('facilities request canceled');
+        } else {
+          console.log(err);
+        }
+      });
+
+    return () => {
+      cancelToken.cancel();
+    };
   }, []);
 
   return (

@@ -11,15 +11,17 @@ import {
   ADD_FACILITY_ROUTE,
   ADD_GARDEN_ROUTE,
   GARDEN_ROUTE,
+  USERS_ROUTE,
   REPORTS_ROUTE,
   CREATE_MONTHLY_REPORT_ROUTE,
   CREATE_YEARLY_REPORT_ROUTE,
 } from './utils/consts';
 import Facilities from './pages/facilities/Facilities';
 import { monthlyReportInputs, yearlyReportInputs } from './utils/formSource';
-import CreateFacility from './pages/add/CreateFacility';
-import CreateGarden from './pages/add/CreateGarden';
+import CreateFacility from './pages/createFacility/CreateFacility';
+import CreateGarden from './pages/createGarden/CreateGarden';
 import Reports from './pages/reports/Reports';
+import Users from './pages/users/Users';
 import CreateMonthlyReport from './pages/createMonthlyReport/CreateMonthlyReport';
 import CreateYearlyReport from './pages/createYearlyReport/CreateYearlyReport';
 
@@ -31,6 +33,7 @@ export const authRoutes = [
   { path: ADD_FACILITY_ROUTE, Component: <CreateFacility /> },
   { path: ADD_GARDEN_ROUTE, Component: <CreateGarden /> },
   { path: REPORTS_ROUTE, Component: <Reports /> },
+  { path: USERS_ROUTE, Component: <Users /> },
   {
     path: CREATE_MONTHLY_REPORT_ROUTE,
     Component: <CreateMonthlyReport inputs={monthlyReportInputs} />,

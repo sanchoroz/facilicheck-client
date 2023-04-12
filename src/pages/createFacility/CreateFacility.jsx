@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import instance from '../../instance';
 import axios from 'axios';
-import './creategarden.scss';
+import './createfacility.scss';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +12,7 @@ const CreateFacility = () => {
   const [file, setFile] = React.useState(null);
   const [facility, setFacility] = React.useState({
     facilityName: '', //מק''ט המתקן
+    garden: '',
     sku: '', //מס''ד המתקן
     standard: '', //תקן המתקן
     manufacturer: '', //שם היצרן
@@ -34,7 +35,6 @@ const CreateFacility = () => {
 
   const handleDropdownChange = (event) => {
     setSelectedOption(event.target.value);
-    console.log('selected option', selectedOption);
   };
 
   const navigate = useNavigate();
@@ -63,7 +63,7 @@ const CreateFacility = () => {
     event.preventDefault();
     const url = await upload(file);
 
-    await postData({ ...facility, imageUrl: url });
+    await postData({ ...facility, imageUrl: url, garden: selectedOption });
     console.log('facility', facility);
     navigate('/facilities');
   };
@@ -85,7 +85,7 @@ const CreateFacility = () => {
           <form onSubmit={handleSubmit}>
             <div className="left">
               <h1>צור מתקן חדש</h1>
-              <select value={selectedOption} onChange={handleDropdownChange}>
+              <select required value={selectedOption} onChange={handleDropdownChange}>
                 <option value="">בחר גן</option>
                 {data.map((item, index) => (
                   <option key={index} value={item._id}>

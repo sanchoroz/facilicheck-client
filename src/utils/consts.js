@@ -7,5 +7,6 @@ export const REGISTRATION_ROUTE = '/login';
 export const ADD_FACILITY_ROUTE = '/facilities/create';
 export const ADD_GARDEN_ROUTE = '/gardens/create';
 export const REPORTS_ROUTE = '/reports';
+export const USERS_ROUTE = '/users';
 export const CREATE_MONTHLY_REPORT_ROUTE = '/reports/create/monthly';
 export const CREATE_YEARLY_REPORT_ROUTE = '/reports/create/yearly';

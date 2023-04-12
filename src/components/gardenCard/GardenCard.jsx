@@ -13,11 +13,6 @@ import NotificationImportantIcon from '@mui/icons-material/NotificationImportant
 
 const GardenCard = (props) => {
   const { garden, onDelete } = props;
-  const [item, setItem] = React.useState(garden);
-
-  React.useEffect(() => {
-    console.log('item', item);
-  }, [item]);
 
   function handleDelete(event, gardenId) {
     let result = window.confirm(
@@ -26,7 +21,6 @@ const GardenCard = (props) => {
     if (result) {
       instance.put(`http://localhost:5000/api/garden/delete/${gardenId}`).then((response) => {
         if (response.status === 200) {
-          //setGardens((current) => current.filter((g) => g.id === gardenId));
           onDelete(gardenId);
         }
       });
@@ -35,36 +29,41 @@ const GardenCard = (props) => {
 
   return (
     <>
-      {item && (
+      {garden && (
         <Card sx={{ width: 300 }} classes={{ root: 'card' }} dir="rtl">
-          <CardMedia component="img" alt="garden cover image" height="200" image={item.imageUrl} />
+          <CardMedia
+            component="img"
+            alt="garden cover image"
+            height="200"
+            image={garden.imageUrl}
+          />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              {item.siteName}
+              {garden.siteName}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              כתובת: {item.address}
+              כתובת: {garden.address}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              מס''ד האתר: {item.serialNumber}
+              מס''ד האתר: {garden.serialNumber}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              כמות מתקנים: {item.facilities.length}
+              כמות מתקנים: {garden.facilities.length}
             </Typography>
           </CardContent>
           <CardActions>
-            <Link to="/garden" state={{ stateParam: item._id }} className="link">
+            <Link to="/garden" state={{ stateParam: garden._id }} className="link">
               <Button size="medium">צפיה</Button>
             </Link>
             <Button size="medium">דוחות</Button>
             <Button
               size="medium"
               onClick={(event) => {
-                handleDelete(event, item._id);
+                handleDelete(event, garden._id);
               }}>
               הסר
             </Button>
-            {item.hasFailedFacilities && (
+            {garden.hasFailedFacilities && (
               <div className="failed">
                 <Tooltip title="Garden has a failed facilities">
                   <NotificationImportantIcon className="icon" />
