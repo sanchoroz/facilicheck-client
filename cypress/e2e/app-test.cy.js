@@ -4,7 +4,7 @@ describe('Login page title', () => {
   })
 
   it('should be correct', () => {
-    cy.get('[data-cy=login-title]').contains('התחברות')
+    cy.get('[data-cy=login-title]').contains('xxx')
 
   })
 })
