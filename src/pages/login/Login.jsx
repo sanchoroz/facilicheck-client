@@ -39,7 +39,7 @@ const Login = () => {
 
   return (
     <Paper classes={{ root: 'root' }}>
-      <Typography classes={{ root: 'title' }} variant="h5">
+      <Typography data-cy="login-title" classes={{ root: 'title' }} variant="h5">
         התחברות
       </Typography>
       <form onSubmit={handleSubmit(onSubmitForm)}>
@@ -59,7 +59,7 @@ const Login = () => {
           {...register('password', { required: 'set password' })}
           fullWidth
         />
-        <Button type="submit" size="large" variant="contained" fullWidth>
+        <Button data-cy="login-button" type="submit" size="large" variant="contained" fullWidth>
           התחבר
         </Button>
       </form>

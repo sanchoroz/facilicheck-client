@@ -1,6 +1,6 @@
 // development configuration
 const devConfig = {
-  apiUrl: 'http://localhost:5000/',
+  apiUrl: 'http://localhost:5001/',
 };
 
 // production configuration
