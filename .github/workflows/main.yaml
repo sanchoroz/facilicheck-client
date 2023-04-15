@@ -5,19 +5,21 @@ on: [push]
 jobs:
   install:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [17.x]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Cache dependencies
-        uses: actions/cache@v2
+      
+      - name: Starting nodejs with ${{matrix.node-version}}
+        uses: actions/setup-node@v3
         with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-
+          node-version: ${{matrix.node-version}}
 
       - name: Install dependencies
-        run: npm ci --ignore-scripts
+        run: npm install
 
       - name: Cypress run
         uses: cypress-io/github-action@v3
