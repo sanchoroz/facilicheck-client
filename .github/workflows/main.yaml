@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
+
       - name: Starting nodejs with ${{matrix.node-version}}
         uses: actions/setup-node@v3
         with:
@@ -27,4 +27,4 @@ jobs:
           browser: chrome
           headless: true
           start: npm run start
-          wait-on: "http://localhost:3000"
+          wait-on: 'http://localhost:3000'
