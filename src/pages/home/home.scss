@@ -1,6 +1,11 @@
 .home {
   display: flex;
 
+  .title {
+    display: flex;
+    padding: 20px;
+  }
+
   .homeContainer {
     flex: 6;
 

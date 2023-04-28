@@ -63,6 +63,9 @@ const Home = () => {
       <Sidebar />
       <div className="homeContainer">
         <Navbar />
+        <div className="title">
+          <h1 data-cy="title">Home</h1>
+        </div>
         <div className="widgets">
           <Widget type="users" amount={users} />
           <Widget type="gardens" amount={gardens} />

@@ -20,8 +20,8 @@ const Login = () => {
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
-      email: 'server@admin.com',
-      password: '12345',
+      email: '',
+      password: '',
     },
     mode: 'onChange',
   });
@@ -45,6 +45,7 @@ const Login = () => {
       <form onSubmit={handleSubmit(onSubmitForm)}>
         <TextField
           className="field"
+          data-cy="name-input"
           label="אימייל"
           error={Boolean(errors.email?.message)}
           helperText={errors.email?.message}
@@ -53,6 +54,7 @@ const Login = () => {
         />
         <TextField
           className="field"
+          data-cy="password-input"
           label="סיסמה"
           error={Boolean(errors.password?.message)}
           helperText={errors.password?.message}
