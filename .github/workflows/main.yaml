@@ -35,7 +35,6 @@ jobs:
           headless: true
           start: npm run stage
           wait-on: 'http://localhost:3000'
-          wait-on: 'https://sanchoroz-facilicheck-server-stage.onrender.com/'
           parallel: true
         env:
           CYPRESS_RECORD_KEY: ${{secrets.CYPRESS_RECORD_KEY}}
