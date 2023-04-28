@@ -24,6 +24,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Print name
+        run: echo "Hello $NODE_ENV"
+
       - name: Cypress run
         uses: cypress-io/github-action@v3
         with:
