@@ -3,8 +3,8 @@ name: E2E on Chrome
 on: [push]
 
 env:
-  NODE_ENV: 'stage'
-  
+  NODE_ENV: stage
+
 jobs:
   install:
     runs-on: ubuntu-latest
@@ -25,7 +25,7 @@ jobs:
         run: npm install
 
       - name: Print name
-        run: echo "Hello $NODE_ENV"
+        run: echo  ${{NODE_ENV}}
 
       - name: Cypress run
         uses: cypress-io/github-action@v3
