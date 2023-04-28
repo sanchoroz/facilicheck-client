@@ -25,6 +25,7 @@ jobs:
         uses: cypress-io/github-action@v3
         with:
           browser: chrome
+          record: true
           headless: true
           start: npm run stage
           wait-on: 'http://localhost:3000'
