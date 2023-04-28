@@ -1,5 +1,8 @@
 name: E2E on Chrome
 
+env:
+  NODE_ENV: 'stage'
+
 on: [push]
 
 jobs:
