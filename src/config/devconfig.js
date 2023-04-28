@@ -11,7 +11,7 @@ const stageConfig = {
 };
 
 const prodConfig = {
-  apiUrl: 'https://sanchoroz-facilicheck-server-stage.onrender.com/',
+  apiUrl: 'https://facilicheck.onrender.com/',
 };
 
 // select configuration based on environment
