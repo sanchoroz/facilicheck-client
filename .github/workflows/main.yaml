@@ -21,14 +21,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Print name
-        run: echo  ${{NODE_ENV}}
-
       - name: Cypress run
         uses: cypress-io/github-action@v3
         with:
           browser: chrome
-          record: true
           headless: true
           start: npm run stage
           wait-on: 'http://localhost:3000'
