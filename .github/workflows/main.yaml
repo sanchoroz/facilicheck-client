@@ -9,14 +9,14 @@ env:
 jobs:
   install:
     runs-on: ubuntu-latest
-     - name: step 1
-        ## Another way reference your environment variables
-        run: echo "The API key is:$API_KEY"
     strategy:
       matrix:
         node-version: [16.x]
 
     steps:
+      - name: step 1
+        run: echo "The NODE_ENV key is:$NODE_ENV"
+
       - name: Checkout
         uses: actions/checkout@v2
 
