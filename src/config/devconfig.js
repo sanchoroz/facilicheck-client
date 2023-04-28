@@ -1,14 +1,30 @@
+let config = null;
+
 // development configuration
 const devConfig = {
   apiUrl: 'http://localhost:5001/',
 };
 
-// production configuration
+// stage configuration
+const stageConfig = {
+  apiUrl: 'https://sanchoroz-facilicheck-server-stage.onrender.com/',
+};
+
 const prodConfig = {
-  apiUrl: 'https://facilicheck.onrender.com',
+  apiUrl: 'https://sanchoroz-facilicheck-server-stage.onrender.com/',
 };
 
 // select configuration based on environment
-const config = process.env.NODE_ENV === 'production' ? prodConfig : devConfig;
+
+switch (process.env.NODE_ENV) {
+  case 'production':
+    config = prodConfig;
+    break;
+  case 'stage':
+    config = stageConfig;
+    break;
+  default:
+    config = devConfig;
+}
 
 export default config;
