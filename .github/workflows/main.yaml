@@ -2,9 +2,16 @@ name: E2E on Chrome
 
 on: [push]
 
+env:
+  ## Sets environment variable
+  NODE_ENV: stage
+
 jobs:
   install:
     runs-on: ubuntu-latest
+     - name: step 1
+        ## Another way reference your environment variables
+        run: echo "The API key is:$API_KEY"
     strategy:
       matrix:
         node-version: [16.x]
@@ -27,7 +34,7 @@ jobs:
           browser: chrome
           headless: true
           start: npm run stage
-          wait-on: 'http://localhost:3000'
+          wait-on: 'https://sanchoroz-facilicheck-server-stage.onrender.com'
           parallel: true
         env:
           CYPRESS_RECORD_KEY: ${{secrets.CYPRESS_RECORD_KEY}}
