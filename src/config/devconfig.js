@@ -24,7 +24,7 @@ switch (process.env.NODE_ENV) {
     config = stageConfig;
     break;
   default:
-    config = devConfig;
+    config = stageConfig;
 }
 
 export default config;
