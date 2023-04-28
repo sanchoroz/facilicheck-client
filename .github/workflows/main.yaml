@@ -1,10 +1,10 @@
 name: E2E on Chrome
 
-env:
-  NODE_ENV: 'stage'
-
 on: [push]
 
+env:
+  NODE_ENV: 'stage'
+  
 jobs:
   install:
     runs-on: ubuntu-latest
