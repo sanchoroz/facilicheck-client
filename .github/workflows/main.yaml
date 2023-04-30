@@ -39,3 +39,4 @@ jobs:
           parallel: true
         env:
           CYPRESS_RECORD_KEY: ${{secrets.CYPRESS_RECORD_KEY}}
+          REACT_APP_ENV: ${{secrets.REACT_APP_ENV}}
