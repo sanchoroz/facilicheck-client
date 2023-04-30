@@ -23,7 +23,7 @@ before(() => {
   // wait for the stage server to be ready
   if ((process.env.REACT_APP_ENV = 'stage')) {
     cy.request({
-      url: 'https://sanchoroz-facilicheck-server-stage.onrender.com/',
+      url: 'https://sanchoroz-facilicheck-server-stage.onrender.com/api/health',
       timeout: 30000, // set the timeout to 30 seconds
     }).then((response) => {
       expect(response.status).to.eq(200);
