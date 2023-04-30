@@ -15,13 +15,16 @@ const prodConfig = {
 };
 
 // select configuration based on environment
-
-switch (process.env.REACT_APP) {
+console.log('process.env.REACT_APP: ', process.env.REACT_APP);
+switch (process.env.REACT_APP_ENV) {
   case 'production':
     config = prodConfig;
     break;
   case 'stage':
     config = stageConfig;
+    break;
+  case 'development':
+    config = devConfig;
     break;
   default:
     config = devConfig;

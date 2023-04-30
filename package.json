@@ -32,8 +32,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "stage": "cross-env NODE_ENV=stage react-scripts start",
+    "start": "node -r dotenv/config node_modules/react-scripts/scripts/start.js react-scripts start",
+    "stage": "node -r dotenv/config node_modules/react-scripts/scripts/start.js react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "cypress:open": "cypress open",
@@ -60,6 +60,7 @@
   "devDependencies": {
     "cross-env": "^7.0.3",
     "cypress": "^12.9.0",
+    "dotenv": "^16.0.3",
     "sass": "^1.59.2"
   }
 }

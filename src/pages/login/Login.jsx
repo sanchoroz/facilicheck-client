@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form';
 
 const Login = () => {
   const isAuth = useSelector(selectIsAuth);
+  const envVar = process.env.REACT_APP_ENV;
 
   const dispatch = useDispatch();
   const {
@@ -40,7 +41,7 @@ const Login = () => {
   return (
     <Paper classes={{ root: 'root' }}>
       <Typography data-cy="login-title" classes={{ root: 'title' }} variant="h5">
-        התחברות
+        Login: {envVar}
       </Typography>
       <form onSubmit={handleSubmit(onSubmitForm)}>
         <TextField
