@@ -16,7 +16,7 @@ const prodConfig = {
 
 // select configuration based on environment
 
-switch (process.env.NODE_ENV) {
+switch (process.env.REACT_APP) {
   case 'production':
     config = prodConfig;
     break;
@@ -24,7 +24,7 @@ switch (process.env.NODE_ENV) {
     config = stageConfig;
     break;
   default:
-    config = stageConfig;
+    config = devConfig;
 }
 
 export default config;
