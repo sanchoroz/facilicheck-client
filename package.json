@@ -33,7 +33,7 @@
   },
   "scripts": {
     "start": "node -r dotenv/config node_modules/react-scripts/scripts/start.js react-scripts start",
-    "stage": "node -r dotenv/config node_modules/react-scripts/scripts/start.js react-scripts start",
+    "stage": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "cypress:open": "cypress open",
