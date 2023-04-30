@@ -9,8 +9,6 @@ describe('Login page title', () => {
     cy.get('[data-cy=password-input]').type('755205');
     cy.get('[data-cy=login-button]').click();
 
-    cy.wait(40000);
-
     cy.get('[data-cy=title]').should('contain', 'Home');
   });
 });
