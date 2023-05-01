@@ -1,4 +1,4 @@
-import LoginPage from '../support/drivers/loginPage';
+import LoginPage from '../support/drivers/LoginPage';
 
 describe('Login page title', () => {
   beforeEach(() => {
