@@ -1,7 +1,7 @@
 .add {
   display: flex;
 
-  .addContainer {
+  .createUserContainer {
     flex: 6;
 
     ///
@@ -11,7 +11,7 @@
       justify-content: center;
 
       form {
-        width: 960px;
+        width: 460px;
         padding: 20px 0px;
         display: flex;
         gap: 120px;
@@ -21,8 +21,7 @@
           margin-bottom: 20px;
         }
 
-        .left,
-        .right {
+        .create {
           flex: 1;
           display: flex;
           flex-direction: column;

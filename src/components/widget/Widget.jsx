@@ -1,46 +1,46 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './widget.scss';
-import Paper from '@mui/material/Paper';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./widget.scss";
+import Paper from "@mui/material/Paper";
 
 const Widget = ({ type, amount }) => {
   let data = {};
 
   switch (type) {
-    case 'users':
+    case "users":
       data = {
-        title: 'משתמשים',
+        title: "Users",
         amount: amount.length,
-        linkText: 'צפה כל המשתמשים',
-        link: '/users',
+        linkText: "View",
+        link: "/users",
       };
       break;
-    case 'gardens':
+    case "gardens":
       data = {
-        title: 'גנים',
+        title: "Gardens",
         amount: amount.length,
-        linkText: 'צפה בכל הגנים',
-        link: '/gardens',
+        linkText: "View",
+        link: "/gardens",
       };
       break;
-    case 'facilities':
+    case "facilities":
       data = {
-        title: 'מתקנים',
+        title: "Facilities",
         amount: amount.length,
-        linkText: 'צפה בכל המתקנים',
-        link: '/facilities',
+        linkText: "View",
+        link: "/facilities",
       };
       break;
     default:
       break;
   }
   return (
-    <Paper elevation={2} classes={{ root: 'widget' }}>
+    <Paper elevation={2} classes={{ root: "widget" }}>
       <div className="center">
         <span className="title">{data.title}</span>
         <span className="counter">{data.amount}</span>
         <span className="link">
-          <Link to={data.link} style={{ textDecoration: 'none' }}>
+          <Link to={data.link} style={{ textDecoration: "none" }}>
             {data.linkText}
           </Link>
         </span>

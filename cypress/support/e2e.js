@@ -14,16 +14,16 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands';
+import "./commands";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
 before(() => {
   // wait for the stage server to be ready
-  if ((process.env.REACT_APP_ENV = 'stage')) {
+  if ((process.env.REACT_APP_ENV = "stage")) {
     cy.request({
-      url: 'https://sanchoroz-facilicheck-server-stage.onrender.com/api/health',
+      url: "https://sanchoroz-facilicheck-server-stage.onrender.com/api/health",
       timeout: 60000, // set the timeout to 30 seconds
     }).then((response) => {
       expect(response.status).to.eq(200);

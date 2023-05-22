@@ -1,9 +1,9 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { authRoutes } from '../routes';
-import { publicRoutes } from '../routes';
-import { fetchAuthMe, selectIsAuth } from '../redux/slices/auth';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { authRoutes } from "../routes";
+import { publicRoutes } from "../routes";
+import { fetchAuthMe, selectIsAuth } from "../redux/slices/auth";
 
 const AppRouter = () => {
   const dispatch = useDispatch();

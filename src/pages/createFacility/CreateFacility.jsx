@@ -1,30 +1,30 @@
-import React, { useEffect } from 'react';
-import instance from '../../instance';
-import axios from 'axios';
-import './createfacility.scss';
-import Sidebar from '../../components/sidebar/Sidebar';
-import Navbar from '../../components/navbar/Navbar';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from "react";
+import instance from "../../instance";
+import axios from "axios";
+import "./createfacility.scss";
+import Sidebar from "../../components/sidebar/Sidebar";
+import Navbar from "../../components/navbar/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const CreateFacility = () => {
   const [data, setData] = React.useState([]);
-  const [selectedOption, setSelectedOption] = React.useState('');
+  const [selectedOption, setSelectedOption] = React.useState("");
   const [file, setFile] = React.useState(null);
   const [facility, setFacility] = React.useState({
-    facilityName: '', //מק''ט המתקן
-    garden: '',
-    sku: '', //מס''ד המתקן
-    standard: '', //תקן המתקן
-    manufacturer: '', //שם היצרן
-    manufacturerType: '', //סוג היצרן
-    basis: '', //ביסוס המתקן
+    facilityName: "", //מק''ט המתקן
+    garden: "",
+    sku: "", //מס''ד המתקן
+    standard: "", //תקן המתקן
+    manufacturer: "", //שם היצרן
+    manufacturerType: "", //סוג היצרן
+    basis: "", //ביסוס המתקן
     isFailed: false, //סטטוס המתקן
-    imageUrl: '',
+    imageUrl: "",
   });
 
   React.useEffect(() => {
     instance
-      .get('/api/garden/gardens')
+      .get("/api/garden/gardens")
       .then((response) => {
         setData(response.data);
       })
@@ -41,11 +41,14 @@ const CreateFacility = () => {
 
   const upload = async (file) => {
     const data = new FormData();
-    data.append('file', file);
-    data.append('upload_preset', 'facilicheck');
+    data.append("file", file);
+    data.append("upload_preset", "facilicheck");
 
     try {
-      const res = await axios.post('https://api.cloudinary.com/v1_1/dqnmco7cg/image/upload', data);
+      const res = await axios.post(
+        "https://api.cloudinary.com/v1_1/dqnmco7cg/image/upload",
+        data
+      );
       const { url } = res.data;
       return url;
     } catch (error) {
@@ -64,8 +67,8 @@ const CreateFacility = () => {
     const url = await upload(file);
 
     await postData({ ...facility, imageUrl: url, garden: selectedOption });
-    console.log('facility', facility);
-    navigate('/facilities');
+    console.log("facility", facility);
+    navigate("/facilities");
   };
 
   const postData = async (formData) => {
@@ -77,81 +80,89 @@ const CreateFacility = () => {
   };
 
   return (
-    <div className="add" dir="rtl">
+    <div className="add">
       <Sidebar />
       <div className="addContainer">
         <Navbar />
         <div className="register">
           <form onSubmit={handleSubmit}>
             <div className="left">
-              <h1>צור מתקן חדש</h1>
-              <select required value={selectedOption} onChange={handleDropdownChange}>
-                <option value="">בחר גן</option>
+              <h1>Create new facility </h1>
+              <select
+                required
+                value={selectedOption}
+                onChange={handleDropdownChange}
+              >
+                <option value="">Select Garden</option>
                 {data.map((item, index) => (
                   <option key={index} value={item._id}>
                     {item.siteName}
                   </option>
                 ))}
               </select>
-              <label htmlFor="">מק''ט המתקן</label>
+              <label htmlFor="">Facility number</label>
               <input
                 required
                 type="text"
-                placeholder="מק''ט המתקן"
+                placeholder="facility number"
                 name="facilityName"
                 onChange={handleFieldChange}
               />
-              <label htmlFor="">מס''ד המתקן</label>
+              <label htmlFor="">SKU</label>
               <input
                 type="text"
                 required
-                placeholder="מס''ד המתקן"
+                placeholder="sku"
                 name="sku"
                 onChange={handleFieldChange}
               />
               <div className="toggle">
-                <label htmlFor="">סטטוס המתקן</label>
+                <label htmlFor="">Status</label>
                 <label className="switch">
                   <input type="checkbox" />
                   <span className="slider round"></span>
                 </label>
               </div>
-              <label htmlFor="">תמונת מתקן</label>
-              <input type="file" name="imageUrl" onChange={(e) => setFile(e.target.files[0])} />
-              <button type="submit">צור גן</button>
+              <label htmlFor="">Facility image</label>
+              <input
+                type="file"
+                name="imageUrl"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+              <button type="submit">Create</button>
             </div>
 
             <div className="right">
-              <label htmlFor="">תקן המתקן</label>
+              <label htmlFor="">Standard</label>
               <input
                 required
                 type="text"
-                placeholder="תקן המתקן"
+                placeholder="standard"
                 onChange={handleFieldChange}
                 name="standard"
               />
-              <label htmlFor="">שם היצרן</label>
+              <label htmlFor="">Manufacturer</label>
               <input
                 required
                 type="text"
                 name="manufacturer"
-                placeholder="שם היצרן"
+                placeholder="manufacturer"
                 onChange={handleFieldChange}
               />
-              <label htmlFor="">סוג היצרן</label>
+              <label htmlFor="">Manufacturer Type</label>
               <input
                 required
                 name="manufacturerType"
                 type="text"
-                placeholder="סוג היצרן"
+                placeholder="Manufacturer Type"
                 onChange={handleFieldChange}
               />
-              <label htmlFor="">ביסוס המתקן</label>
+              <label htmlFor="">Base Type</label>
               <input
                 required
                 name="basis"
                 type="text"
-                placeholder="ביסוס המתקן"
+                placeholder="Base type"
                 onChange={handleFieldChange}
               />
             </div>

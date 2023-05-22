@@ -1,12 +1,13 @@
-import React from 'react';
-import './gardens.scss';
-import instance from '../../instance';
-import Sidebar from '../../components/sidebar/Sidebar';
-import Navbar from '../../components/navbar/Navbar';
-import GardenCard from '../../components/gardenCard/GardenCard';
-import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React from "react";
+import "./gardens.scss";
+import instance from "../../instance";
+import Sidebar from "../../components/sidebar/Sidebar";
+import Navbar from "../../components/navbar/Navbar";
+import GardenCard from "../../components/gardenCard/GardenCard";
+import PageTitle from "../../components/pageTitle/PageTitle";
+import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Gardens = () => {
   const [gardens, setGardens] = React.useState([]);
@@ -21,7 +22,7 @@ const Gardens = () => {
       })
       .catch((err) => {
         if (axios.isCancel(err)) {
-          console.log('gardens request canceled');
+          console.log("gardens request canceled");
         } else {
           console.log(err);
         }
@@ -33,28 +34,34 @@ const Gardens = () => {
   }, []);
 
   function handleDelete(componentId) {
-    setGardens((prevState) => prevState.filter((component) => component._id !== componentId));
+    setGardens((prevState) =>
+      prevState.filter((component) => component._id !== componentId)
+    );
   }
 
   return (
-    <div className="gardens" dir="rtl">
+    <div className="gardens">
       <Sidebar />
       <div className="gardensContainer">
         <Navbar />
-
+        <PageTitle title={"Gardens"} />
         <div className="gardensTitle">
-          גנים
-          <Link to="/gardens/create" style={{ textDecoration: 'none' }} className="link">
+          <Link
+            to="/gardens/create"
+            style={{ textDecoration: "none" }}
+            className="link"
+          >
             <Button
               className="createButton"
               size="small"
               variant="contained"
               style={{
-                backgroundColor: '#1dbf73',
-                fontSize: '12px',
-                textDecoration: 'none',
-              }}>
-              צור גן חדש
+                backgroundColor: "#1dbf73",
+                fontSize: "12px",
+                textDecoration: "none",
+              }}
+            >
+              Create new Garden
             </Button>
           </Link>
         </div>
@@ -62,7 +69,7 @@ const Gardens = () => {
         <div className="cardsContainer">
           {gardens &&
             gardens.map((item, index) => (
-              <GardenCard dir="rtl" key={index} garden={item} onDelete={handleDelete}>
+              <GardenCard key={index} garden={item} onDelete={handleDelete}>
                 {item.siteName}
               </GardenCard>
             ))}

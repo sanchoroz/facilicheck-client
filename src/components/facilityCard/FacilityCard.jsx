@@ -1,23 +1,23 @@
-import React from 'react';
-import './facilitycard.scss';
-import instance from '../../instance';
-import { Link } from 'react-router-dom';
-import Tooltip from '@mui/material/Tooltip';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import NotificationImportantIcon from '@mui/icons-material/NotificationImportant';
+import React from "react";
+import "./facilitycard.scss";
+import instance from "../../instance";
+import { Link } from "react-router-dom";
+import Tooltip from "@mui/material/Tooltip";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import NotificationImportantIcon from "@mui/icons-material/NotificationImportant";
 
 const FacilityCard = (props) => {
   const { facility, onDelete } = props;
 
   function handleDelete(event, facilityId) {
-    let result = window.confirm('Do you want to delete Facility?');
+    let result = window.confirm("Do you want to delete Facility?");
     if (result) {
-      instance.put(`http://localhost:5000/api/facility/delete/${facilityId}`).then((response) => {
+      instance.put(`/api/facility/delete/${facilityId}`).then((response) => {
         if (response.status === 200) {
           onDelete(facilityId);
         }
@@ -28,7 +28,7 @@ const FacilityCard = (props) => {
   return (
     <>
       {facility && (
-        <Card sx={{ width: 300 }} classes={{ root: 'card' }} dir="rtl">
+        <Card sx={{ width: 300 }} classes={{ root: "card" }}>
           <CardMedia
             component="img"
             alt="garden cover image"
@@ -40,26 +40,31 @@ const FacilityCard = (props) => {
               {facility.facilityName}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              מס''ד המתקן: {facility.sku}
+              SKU: {facility.sku}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              שם היצרן: {facility.manufacturer}
+              Manufactorer: {facility.manufacturer}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              שייך לגן: {facility.garden.siteName}
+              Garden: {facility.garden.siteName}
             </Typography>
           </CardContent>
           <CardActions>
-            <Link to="/facility" state={{ stateParam: facility._id }} className="link">
-              <Button size="medium">צפיה</Button>
+            <Link
+              to="/facility"
+              state={{ stateParam: facility._id }}
+              className="link"
+            >
+              <Button size="medium">View</Button>
             </Link>
-            <Button size="medium">דוחות</Button>
+            <Button size="medium">Reports</Button>
             <Button
               size="medium"
               onClick={(event) => {
                 handleDelete(event, facility._id);
-              }}>
-              הסר
+              }}
+            >
+              Delete
             </Button>
             {facility.isFailed && (
               <div className="failed">

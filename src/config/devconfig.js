@@ -2,28 +2,28 @@ let config = null;
 
 // development configuration
 const devConfig = {
-  apiUrl: 'http://localhost:5001/',
+  apiUrl: `http://localhost:5002`,
 };
 
 // stage configuration
 const stageConfig = {
-  apiUrl: 'https://sanchoroz-facilicheck-server-stage.onrender.com/',
+  apiUrl: "https://sanchoroz-facilicheck-server-stage.onrender.com/",
 };
 
 const prodConfig = {
-  apiUrl: 'https://facilicheck.onrender.com/',
+  apiUrl: "https://facilicheck.onrender.com/",
 };
 
 // select configuration based on environment
-console.log('process.env.REACT_APP: ', process.env.REACT_APP);
+console.log("process.env.REACT_APP: ", process.env.REACT_APP);
 switch (process.env.REACT_APP_ENV) {
-  case 'production':
+  case "production":
     config = prodConfig;
     break;
-  case 'stage':
+  case "stage":
     config = stageConfig;
     break;
-  case 'development':
+  case "development":
     config = devConfig;
     break;
   default:

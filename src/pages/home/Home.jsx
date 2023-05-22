@@ -1,10 +1,11 @@
-import React from 'react';
-import instance from '../../instance';
-import Sidebar from '../../components/sidebar/Sidebar';
-import Navbar from '../../components/navbar/Navbar';
-import Widget from '../../components/widget/Widget';
-import './home.scss';
-import axios from 'axios';
+import React from "react";
+import instance from "../../instance";
+import Sidebar from "../../components/sidebar/Sidebar";
+import Navbar from "../../components/navbar/Navbar";
+import Widget from "../../components/widget/Widget";
+import PageTitle from "../../components/pageTitle/PageTitle";
+import "./home.scss";
+import axios from "axios";
 
 const Home = () => {
   const [users, setUser] = React.useState([]);
@@ -21,7 +22,7 @@ const Home = () => {
       })
       .catch((err) => {
         if (axios.isCancel(err)) {
-          console.log('users request canceled');
+          console.log("users request canceled");
         } else {
           console.log(err);
         }
@@ -34,7 +35,7 @@ const Home = () => {
       })
       .catch((err) => {
         if (axios.isCancel(err)) {
-          console.log('gardens request canceled');
+          console.log("gardens request canceled");
         } else {
           console.log(err);
         }
@@ -47,7 +48,7 @@ const Home = () => {
       })
       .catch((err) => {
         if (axios.isCancel(err)) {
-          console.log('facilities request canceled');
+          console.log("facilities request canceled");
         } else {
           console.log(err);
         }
@@ -59,13 +60,11 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="home" dir="rtl">
+    <div className="home">
       <Sidebar />
       <div className="homeContainer">
         <Navbar />
-        <div className="title">
-          <h1 data-cy="title">Home</h1>
-        </div>
+        <PageTitle title={"Home"} />
         <div className="widgets">
           <Widget type="users" amount={users} />
           <Widget type="gardens" amount={gardens} />

@@ -3,7 +3,7 @@ name: E2E on Chrome
 on: [push]
 
 env:
-  ## Sets environment variable
+  ## Sets environment variables
   NODE_ENV: stage
 
 jobs:
@@ -25,13 +25,8 @@ jobs:
         with:
           node-version: ${{matrix.node-version}}
 
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      - name: Run Prettier
+        run: npm run format
 
       - name: Install dependencies
         run: npm install
@@ -43,7 +38,7 @@ jobs:
           headless: true
           record: true
           start: npm run stage
-          wait-on: 'http://localhost:3000/'
+          wait-on: "http://localhost:3000/"
           parallel: true
         env:
           CYPRESS_RECORD_KEY: ${{secrets.CYPRESS_RECORD_KEY}}

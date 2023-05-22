@@ -1,12 +1,12 @@
-import React from 'react';
-import instance from '../../instance';
-import Sidebar from '../../components/sidebar/Sidebar';
-import Navbar from '../../components/navbar/Navbar';
-import { useSelector, useDispatch } from 'react-redux';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import React from "react";
+import instance from "../../instance";
+import Sidebar from "../../components/sidebar/Sidebar";
+import Navbar from "../../components/navbar/Navbar";
+import { useSelector, useDispatch } from "react-redux";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 const CreateYearlyReport = ({ inputs }) => {
   const timestamp = Date.now();
@@ -14,7 +14,7 @@ const CreateYearlyReport = ({ inputs }) => {
 
   const [fields, setFields] = React.useState(inputs);
   const [gardens, setGardens] = React.useState([]);
-  const [selectedOption, setSelectedOption] = React.useState('');
+  const [selectedOption, setSelectedOption] = React.useState("");
 
   const [garden, setGarden] = React.useState();
   const [facilities, setFacilities] = React.useState([]);
@@ -22,7 +22,7 @@ const CreateYearlyReport = ({ inputs }) => {
 
   React.useEffect(() => {
     instance
-      .get('/api/garden/gardens')
+      .get("/api/garden/gardens")
       .then((response) => {
         setGardens(response.data);
       })
@@ -91,7 +91,10 @@ const CreateYearlyReport = ({ inputs }) => {
 
   const postData = async (formData) => {
     try {
-      const response = await instance.post(`/api/facility/create/${selectedOption}`, formData);
+      const response = await instance.post(
+        `/api/facility/create/${selectedOption}`,
+        formData
+      );
     } catch (error) {
       console.error(error);
     }
@@ -103,7 +106,7 @@ const CreateYearlyReport = ({ inputs }) => {
       <div className="reportContainer">
         <Navbar />
         {!selectedOption ? (
-          <Paper elevation={1} classes={{ root: 'title' }}>
+          <Paper elevation={1} classes={{ root: "title" }}>
             <div className="formInput">
               <select value={selectedOption} onChange={handleDropdownChange}>
                 <option value="">Select an option</option>
@@ -146,7 +149,9 @@ const CreateYearlyReport = ({ inputs }) => {
                             control={
                               <Checkbox
                                 checked={facility.isFailed}
-                                onChange={(event) => handleCheckboxChange(event, index)}
+                                onChange={(event) =>
+                                  handleCheckboxChange(event, index)
+                                }
                               />
                             }
                           />
@@ -154,7 +159,9 @@ const CreateYearlyReport = ({ inputs }) => {
                             <input
                               type="text"
                               value=""
-                              onChange={(event) => handleFieldChange(index, event)}
+                              onChange={(event) =>
+                                handleFieldChange(index, event)
+                              }
                             />
                           )}
                         </div>
@@ -178,13 +185,13 @@ const CreateYearlyReport = ({ inputs }) => {
                       <label>Date</label>
                       <input
                         type="text"
-                        value={new Intl.DateTimeFormat('en-US', {
-                          year: 'numeric',
-                          month: '2-digit',
-                          day: '2-digit',
-                          hour: '2-digit',
-                          minute: '2-digit',
-                          second: '2-digit',
+                        value={new Intl.DateTimeFormat("en-US", {
+                          year: "numeric",
+                          month: "2-digit",
+                          day: "2-digit",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          second: "2-digit",
                         }).format(timestamp)}
                         disabled
                       />

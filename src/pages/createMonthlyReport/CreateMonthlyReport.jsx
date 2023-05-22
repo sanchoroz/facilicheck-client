@@ -1,18 +1,19 @@
-import React from 'react';
-import './createmonthlyreport.scss';
-import instance from '../../instance';
-import Sidebar from '../../components/sidebar/Sidebar';
-import Navbar from '../../components/navbar/Navbar';
-import { useSelector } from 'react-redux';
-import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import "./createmonthlyreport.scss";
+import instance from "../../instance";
+import Sidebar from "../../components/sidebar/Sidebar";
+import PageTitle from "../../components/pageTitle/PageTitle";
+import Navbar from "../../components/navbar/Navbar";
+import { useSelector } from "react-redux";
+import Paper from "@mui/material/Paper";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import { useNavigate } from "react-router-dom";
 
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const CreateMonthlyReport = ({ inputs }) => {
   const timestamp = Date.now();
@@ -20,26 +21,26 @@ const CreateMonthlyReport = ({ inputs }) => {
 
   const [fields, setFields] = React.useState(inputs);
   const [gardens, setGardens] = React.useState([]);
-  const [selectedOption, setSelectedOption] = React.useState('');
+  const [selectedOption, setSelectedOption] = React.useState("");
 
   const [garden, setGarden] = React.useState();
   const [facilities, setFacilities] = React.useState([]);
   const [report, setReport] = React.useState({
-    gardenName: '',
-    reporter: '',
-    reportNumber: '',
-    date: '',
-    previousIssue: '',
-    areaStatus: '',
+    gardenName: "",
+    reporter: "",
+    reportNumber: "",
+    date: "",
+    previousIssue: "",
+    areaStatus: "",
     facilities: {},
-    gardenId: '',
+    gardenId: "",
   });
 
   const navigate = useNavigate();
 
   React.useEffect(() => {
     instance
-      .get('/api/garden/gardens')
+      .get("/api/garden/gardens")
       .then((response) => {
         setGardens(response.data);
       })
@@ -57,29 +58,29 @@ const CreateMonthlyReport = ({ inputs }) => {
   React.useEffect(() => {
     if (selectedOption) {
       setFacilities(garden.facilities);
-      console.log('data', data);
+      console.log("data", data);
       setReport((prevState) => ({
         ...prevState,
-        ['name']: data.name,
-        ['gardenName']: garden.siteName,
-        ['gardenId']: garden._id,
-        ['date']: new Intl.DateTimeFormat('en-US', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
+        ["name"]: data.name,
+        ["gardenName"]: garden.siteName,
+        ["gardenId"]: garden._id,
+        ["date"]: new Intl.DateTimeFormat("en-US", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
         }).format(timestamp),
-        ['reporter']: data.name,
-        ['reportNumber']: getRandomInt(234234234, 33242342546),
+        ["reporter"]: data.name,
+        ["reportNumber"]: getRandomInt(234234234, 33242342546),
       }));
     }
   }, [garden]);
 
   React.useEffect(() => {
     if (garden) {
-      console.log('report: ', report);
+      console.log("report: ", report);
     }
   }, [report]);
 
@@ -100,32 +101,32 @@ const CreateMonthlyReport = ({ inputs }) => {
 
   const handleFieldChange = (index, event) => {
     const newItems = [...garden.facilities];
-    console.log('Field change: ', newItems);
+    console.log("Field change: ", newItems);
     newItems[index].issueDescription = event.target.value;
     setFacilities(newItems);
     setReport((prevState) => ({
       ...prevState,
-      ['facilities']: newItems,
+      ["facilities"]: newItems,
     }));
   };
 
   const handleCheckboxChange = (event, index) => {
     const newItems = [...garden.facilities];
-    console.log('Checkbox change:', event.target.checked, index, newItems);
+    console.log("Checkbox change:", event.target.checked, index, newItems);
     if (event.target.checked) {
       newItems[index].isFailed = event.target.checked;
       setFacilities(newItems);
       setReport((prevState) => ({
         ...prevState,
-        ['facilities']: newItems,
+        ["facilities"]: newItems,
       }));
     } else {
       newItems[index].isFailed = event.target.checked;
-      newItems[index].issueDescription = '';
+      newItems[index].issueDescription = "";
       setFacilities(newItems);
       setReport((prevState) => ({
         ...prevState,
-        ['facilities']: newItems,
+        ["facilities"]: newItems,
       }));
     }
   };
@@ -141,22 +142,22 @@ const CreateMonthlyReport = ({ inputs }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await postData();
-    navigate('/reports');
+    navigate("/reports");
   };
 
   const postData = async () => {
     try {
       let isFailed = false;
       for (let key in garden) {
-        console.log('itterate');
+        console.log("itterate");
         if (Array.isArray(garden[key])) {
           isFailed = garden[key].some((item) => item.isFailed === true);
           // break out of the loop as soon as an item with isFailed === true is found
           if (isFailed) {
-            console.log('failed');
+            console.log("failed");
             await updateGarden(isFailed);
           } else {
-            console.log('pass');
+            console.log("pass");
             await updateGarden(isFailed);
           }
         }
@@ -185,20 +186,21 @@ const CreateMonthlyReport = ({ inputs }) => {
   }
 
   return (
-    <div className="report" dir="rtl">
+    <div className="report">
       <Sidebar />
       <div className="reportContainer">
         <Navbar />
         {!selectedOption ? (
           <Paper elevation={1} className="title">
             <FormControl sx={{ m: 1, width: 300 }}>
-              <InputLabel id="garden-select-label">בחר גן</InputLabel>
+              <InputLabel id="garden-select-label">Select Garden</InputLabel>
               <Select
                 labelId="garden-select-label"
                 id="garden-select"
                 label="Select Garden"
                 value={selectedOption}
-                onChange={handleDropdownChange}>
+                onChange={handleDropdownChange}
+              >
                 {gardens.map((item, index) => (
                   <MenuItem key={index} value={item._id}>
                     {item.siteName}
@@ -209,10 +211,8 @@ const CreateMonthlyReport = ({ inputs }) => {
           </Paper>
         ) : (
           <>
-            <Paper elevation={1} className="title">
-              <h1>צור דוח חדש</h1>
-            </Paper>
-            <Paper elevation={2} className="addBlock" dir="rtl">
+            <PageTitle title={"Monthly Report"} />
+            <Paper elevation={2} className="addBlock">
               <div className="left">
                 <form onSubmit={handleSubmit}>
                   {fields.map((field, index) => {
@@ -235,11 +235,13 @@ const CreateMonthlyReport = ({ inputs }) => {
                         <div className="formInput" key={facility._id}>
                           <label>{facility.facilityName}</label>
                           <FormControlLabel
-                            label="בדיקה נכשלה"
+                            label="check failed"
                             control={
                               <Checkbox
                                 checked={facility.isFailed}
-                                onChange={(event) => handleCheckboxChange(event, index)}
+                                onChange={(event) =>
+                                  handleCheckboxChange(event, index)
+                                }
                               />
                             }
                           />
@@ -247,34 +249,36 @@ const CreateMonthlyReport = ({ inputs }) => {
                             <input
                               type="text"
                               value={facility.issueDescription}
-                              placeholder="ציין את הביות במתקן"
+                              placeholder="describe facility issue"
                               name={facility.facilityName}
-                              onChange={(event) => handleFieldChange(index, event)}
+                              onChange={(event) =>
+                                handleFieldChange(index, event)
+                              }
                             />
                           )}
                         </div>
                       );
                     })}
-                  <button type="submit">שלח</button>
+                  <button type="submit">Send</button>
                 </form>
               </div>
               {garden && (
                 <div className="right">
                   <div className="gardenInfo">
                     <div className="formInput">
-                      <label>שם הגן</label>
+                      <label>Garden name</label>
                       <input type="text" value={report.gardenName} disabled />
                     </div>
                     <div className="formInput">
-                      <label>שם המדווח</label>
+                      <label>Reporter name</label>
                       <input type="text" value={report.name} disabled />
                     </div>
                     <div className="formInput">
-                      <label>מס"ד הדוח</label>
+                      <label>Report number</label>
                       <input type="text" value={report.reportNumber} disabled />
                     </div>
                     <div className="formInput">
-                      <label>תאריך בדיקה</label>
+                      <label>Report date</label>
                       <input type="text" value={report.date} disabled />
                     </div>
                   </div>

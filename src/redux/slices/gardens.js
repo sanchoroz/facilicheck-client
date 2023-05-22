@@ -1,14 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   gardens: {
     items: [],
-    status: 'loading',
+    status: "loading",
   },
 };
 
 const gardensSlice = createSlice({
-  name: 'gardens',
+  name: "gardens",
   initialState,
   reducer: {},
 });

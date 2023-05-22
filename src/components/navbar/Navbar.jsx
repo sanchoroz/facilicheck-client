@@ -1,10 +1,10 @@
-import React from 'react';
-import { useNavigate, Navigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { selectIsAuth, logout } from '../../redux/slices/auth';
-import Button from '@mui/material/Button';
-import './navbar.scss';
+import React from "react";
+import { useNavigate, Navigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { selectIsAuth, logout } from "../../redux/slices/auth";
+import Button from "@mui/material/Button";
+import "./navbar.scss";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -14,24 +14,24 @@ const Navbar = () => {
 
   const onClickLogout = () => {
     dispatch(logout());
-    window.localStorage.removeItem('token');
-    navigate('/login');
+    window.localStorage.removeItem("token");
+    navigate("/login");
   };
 
   return (
-    <div className="navbar" dir="rtl">
+    <div className="navbar">
       <div className="wrapper">
         <div className="items">
           {isAuth ? (
             <>
-              <Button onClick={onClickLogout} size="small" variant="contained" dir="rtl">
-                יציאה
+              <Button onClick={onClickLogout} size="small" variant="contained">
+                Logout
               </Button>
             </>
           ) : (
             <Link to="/login">
               <Button size="small" variant="contained">
-                התחברות
+                Login
               </Button>
             </Link>
           )}
