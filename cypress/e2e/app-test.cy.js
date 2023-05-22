@@ -7,7 +7,7 @@ describe("Login page title", () => {
   });
 
   it("should be correct", () => {
-    LoginPage.doLogin("serverstage@admin.com", "755205");
+    LoginPage.doLogin("stage@admin.com", "755205");
     cy.get("[data-cy=title]").should("contain", "Home");
   });
 });
