@@ -13,7 +13,7 @@ describe("Login suite", () => {
   });
 
   it("should logout", () => {
-    LoginPage.do("stage@admin.com", "755205");
+    LoginPage.doLogin("stage@admin.com", "755205");
     cy.get("[data-cy=home-title]").should("contain", "Home");
   });
 });
