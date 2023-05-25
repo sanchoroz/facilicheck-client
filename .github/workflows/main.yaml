@@ -24,8 +24,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{matrix.node-version}}
+          
       - name: Output secret
-        run: echo "Variable Value: ${{ secrets.SERVER_REPO_TOKEN }}"
+        run: echo "Variable Value: $secrets.SERVER_REPO_TOKEN"
 
       - name: Install dependencies
         run: npm install
