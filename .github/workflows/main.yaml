@@ -27,6 +27,13 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+      
+      - name: Trigger Server Workflow
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.SERVER_REPO_TOKEN }}
+          repository: sanchoroz/facilicheck-server
+          event-type: setup-database
 
       - name: Run Prettier
         run: npm run format
