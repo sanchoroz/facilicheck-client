@@ -12,8 +12,8 @@ describe("Login suite", () => {
     cy.get("[data-cy=home-title]").should("contain", "Home");
   });
 
-  it("should redirect to home page", () => {
-    LoginPage.doLogin("stage@admin.com", "755205");
+  it("should logout", () => {
+    LoginPage.do("stage@admin.com", "755205");
     cy.get("[data-cy=home-title]").should("contain", "Home");
   });
 });
