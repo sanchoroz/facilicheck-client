@@ -26,7 +26,7 @@ jobs:
           node-version: ${{matrix.node-version}}
           
       - name: Output secret
-        run: echo "${{secrets.SERVER_REPO_TOKEN}}"
+        run: echo "${{secrets.ACCESS_TOKEN}}"
 
       - name: Install dependencies
         run: npm install
@@ -34,7 +34,7 @@ jobs:
       - name: Trigger Server Workflow
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: ${{ secrets.SERVER_REPO_TOKEN }}
+          token: ${{ secrets.ACCESS_TOKEN }}
           repository: sanchoroz/facilicheck-server
           event-type: setup-database
 
