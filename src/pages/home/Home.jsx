@@ -64,7 +64,7 @@ const Home = () => {
       <Sidebar />
       <div className="homeContainer">
         <Navbar />
-        <PageTitle title={"Home"} />
+        <PageTitle title={"Gome"} />
         <div className="widgets">
           <Widget type="users" amount={users} />
           <Widget type="gardens" amount={gardens} />
