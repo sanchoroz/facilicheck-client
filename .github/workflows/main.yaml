@@ -3,7 +3,6 @@ name: Pull Request Workflow
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-  push:
     branches:
       - master
 
@@ -62,7 +61,7 @@ jobs:
   merge-blocker:
     needs: install
     runs-on: ubuntu-latest
-    if: ${{ needs.install.result == 'failure' }}
-    steps:
-      - name: Block pull request merge
-        run: exit 1
+    if: ${{ needs.install.outcome != 'success' }}
+      steps:
+        - name: Block pull request merge
+          run: exit 1
