@@ -7,6 +7,7 @@ describe("Logout", () => {
   });
 
   it("should redirect to login page", () => {
+    
     LoginPage.doLogin("stage@admin.com", "755205");
     cy.get("[data-cy=home-title]").should("contain", "Home");
     Header.doLogout();
