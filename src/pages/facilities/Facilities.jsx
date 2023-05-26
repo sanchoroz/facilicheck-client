@@ -67,14 +67,14 @@ const Facilities = () => {
           </Link>
         </div>
 
-        <div className="cardsContainer">
-          {facilities &&
-            facilities.map((item, index) => (
+        {facilities &&
+          facilities.map((item, index) => (
+            <div className="cardsContainer">
               <FacilityCard key={index} facility={item} onDelete={handleDelete}>
                 {item.siteName}
               </FacilityCard>
-            ))}
-        </div>
+            </div>
+          ))}
       </div>
     </div>
   );

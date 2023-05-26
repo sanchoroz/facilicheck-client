@@ -1,16 +1,8 @@
 import BasePage from "../base-page";
 
 export default class LoginPage extends BasePage {
-  static inputEmail = '[data-cy="name-input"] input';
-
-  static doLogin(email, password) {
-    this.getName().clear().type(email);
-    this.getPassword().clear().type(password);
-    this.getLoginButton().click();
-  }
-
   static getName() {
-    return cy.get(this.inputEmail);
+    return cy.get('[data-cy="name-input"] input');
   }
 
   static getPassword() {
@@ -19,5 +11,24 @@ export default class LoginPage extends BasePage {
 
   static getLoginButton() {
     return cy.get('[data-cy="login-button"]');
+  }
+
+  static getTitle() {
+    return cy.get('[data-cy="login-title"]');
+  }
+
+  static isLoaded() {
+    this.getTitle().should("contain", "Login");
+  }
+
+  static isNotVisible(){
+    this.getLoginButton().should("not.be.visible", { timeout: 3000 });
+  }
+
+  static doLogin(email, password) {
+    this.isLoaded()
+    this.getName().clear().type(email);
+    this.getPassword().clear().type(password);
+    this.getLoginButton().click();
   }
 }

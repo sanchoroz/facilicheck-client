@@ -24,7 +24,12 @@ const Navbar = () => {
         <div className="items">
           {isAuth ? (
             <>
-              <Button onClick={onClickLogout} size="small" variant="contained">
+              <Button
+                onClick={onClickLogout}
+                size="small"
+                data-cy={"logout-btn"}
+                variant="contained"
+              >
                 Logout
               </Button>
             </>
