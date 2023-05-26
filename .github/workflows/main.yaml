@@ -40,7 +40,7 @@ jobs:
           repository: sanchoroz/facilicheck-server
           event-type: setup-database
 
-      - name: Run Prettier
+      - name: Prettier Run 
         run: npm run format
 
       - name: Cypress run
@@ -55,3 +55,10 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{secrets.CYPRESS_RECORD_KEY}}
           REACT_APP_ENV: ${{secrets.REACT_APP_ENV}}
+          
+      - name: Check test status
+        run: |
+          if [ ${{ job.status }} == 'failure' ]; then
+            echo "Tests failed. Blocking pull request merge."
+            exit 1
+          fi
