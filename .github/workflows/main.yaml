@@ -56,9 +56,10 @@ jobs:
           CYPRESS_RECORD_KEY: ${{secrets.CYPRESS_RECORD_KEY}}
           REACT_APP_ENV: ${{secrets.REACT_APP_ENV}}
           
-      - name: Check test status
-        run: |
-          if [ ${{ job.status }} == 'failure' ]; then
-            echo "Tests failed. Blocking pull request merge."
-            exit 1
-          fi
+merge-blocker:
+  needs: install
+  runs-on: ubuntu-latest
+  if: ${{ needs.install.result == 'failure' }}
+  steps:
+    - name: Block pull request merge
+      run: exit 1
