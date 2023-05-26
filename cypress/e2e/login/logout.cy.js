@@ -11,5 +11,6 @@ describe("Logout", () => {
     cy.get("[data-cy=home-title]").should("contain", "Home");
     Header.doLogout();
     LoginPage.isLoaded();
+    
   });
 });
