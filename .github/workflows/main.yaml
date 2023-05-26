@@ -62,6 +62,6 @@ jobs:
     needs: install
     runs-on: ubuntu-latest
     if: ${{ needs.install.outcome != 'success' }}
-      steps:
-        - name: Block pull request merge
-          run: exit 1
+    steps:
+      - name: Block pull request merge
+        run: exit 1
