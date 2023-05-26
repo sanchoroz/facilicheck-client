@@ -57,11 +57,3 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{secrets.CYPRESS_RECORD_KEY}}
           REACT_APP_ENV: ${{secrets.REACT_APP_ENV}}
-
-  merge-blocker:
-    needs: install
-    runs-on: ubuntu-latest
-    if: ${{ needs.install.outcome != 'success' }}
-    steps:
-      - name: Block pull request merge
-        run: exit 1
