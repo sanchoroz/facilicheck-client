@@ -3,6 +3,8 @@ name: Pull Request Workflow
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+    branches:
+      - master
 
 env:
   ## Sets environment variables
@@ -40,7 +42,7 @@ jobs:
           repository: sanchoroz/facilicheck-server
           event-type: setup-database
 
-      - name: Prettier Run 
+      - name: Run Prettier
         run: npm run format
 
       - name: Cypress run
@@ -55,11 +57,11 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{secrets.CYPRESS_RECORD_KEY}}
           REACT_APP_ENV: ${{secrets.REACT_APP_ENV}}
-          
-merge-blocker:
-  needs: install
-  runs-on: ubuntu-latest
-  if: ${{ needs.install.result == 'failure' }}
-  steps:
-    - name: Block pull request merge
-      run: exit 1
+
+  merge-blocker:
+    needs: install
+    runs-on: ubuntu-latest
+    if: ${{ needs.install.outcome != 'success' }}
+    steps:
+      - name: Block pull request merge
+        run: exit 1
