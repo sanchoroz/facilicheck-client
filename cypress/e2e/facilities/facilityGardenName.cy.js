@@ -5,7 +5,7 @@ import CreateGarden from "../../page-objects/components/CreateGarden";
 import FacilityPage from "../../page-objects/pages/FacilitiesPage";
 import CreateFacility from "../../page-objects/components/CreateFacility";
 
-describe("Facility", () => {
+describe("Facilities", () => {
   beforeEach(() => {
     cy.visit("/");
     LoginPage.doLogin("stage@admin.com", "755205");
