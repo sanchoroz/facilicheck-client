@@ -28,7 +28,11 @@ const FacilityCard = (props) => {
   return (
     <>
       {facility && (
-        <Card sx={{ width: 300 }} classes={{ root: "card" }}>
+        <Card
+          sx={{ width: 300 }}
+          classes={{ root: "card" }}
+          data-cy="facilityCard"
+        >
           <CardMedia
             component="img"
             alt="garden cover image"
@@ -36,16 +40,29 @@ const FacilityCard = (props) => {
             image={facility.imageUrl}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="div"
+              data-cy="facilityName"
+            >
               {facility.facilityName}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="text.secondary" data-cy="sku">
               SKU: {facility.sku}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              data-cy="manufacturer"
+            >
               Manufactorer: {facility.manufacturer}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              data-cy="facilityGardenName"
+            >
               Garden: {facility.garden.siteName}
             </Typography>
           </CardContent>
@@ -55,11 +72,16 @@ const FacilityCard = (props) => {
               state={{ stateParam: facility._id }}
               className="link"
             >
-              <Button size="medium">View</Button>
+              <Button size="medium" data-cy="viewFacility">
+                View
+              </Button>
             </Link>
-            <Button size="medium">Reports</Button>
+            <Button size="medium" data-cy="facilityReports">
+              Reports
+            </Button>
             <Button
               size="medium"
+              data-cy="deleteFacility"
               onClick={(event) => {
                 handleDelete(event, facility._id);
               }}

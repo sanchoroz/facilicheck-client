@@ -54,6 +54,7 @@ const Gardens = () => {
             <Button
               className="createButton"
               size="small"
+              data-cy="createGarden"
               variant="contained"
               style={{
                 backgroundColor: "#1dbf73",

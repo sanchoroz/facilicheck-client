@@ -19,7 +19,6 @@ const Facilities = () => {
       .get(`/api/facility/facilities`, { cancelToken: cancelToken.token })
       .then((response) => {
         setFacilities(response.data);
-        console.log("facilities", response.data);
       })
       .catch((err) => {
         if (axios.isCancel(err)) {
@@ -56,6 +55,7 @@ const Facilities = () => {
               className="createButton"
               size="small"
               variant="contained"
+              data-cy="createFacility"
               style={{
                 backgroundColor: "#1dbf73",
                 fontSize: "12px",

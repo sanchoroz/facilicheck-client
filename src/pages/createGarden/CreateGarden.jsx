@@ -58,7 +58,6 @@ const CreateGarden = () => {
     const url = await upload(file);
 
     await postData({ ...garden, imageUrl: url });
-    console.log("garden", garden);
     navigate("/gardens");
   };
 
@@ -78,12 +77,13 @@ const CreateGarden = () => {
         <div className="register">
           <form onSubmit={handleSubmit}>
             <div className="left">
-              <h1>Create new Garden</h1>
+              <h1 data-cy="createGardenTitle">Create new Garden</h1>
               <label htmlFor="">Name</label>
               <input
                 required
                 type="text"
                 placeholder="name"
+                data-cy="siteName"
                 name="siteName"
                 onChange={handleFieldChange}
               />
@@ -92,6 +92,7 @@ const CreateGarden = () => {
                 type="text"
                 required
                 placeholder="address"
+                data-cy="address"
                 name="address"
                 onChange={handleFieldChange}
               />
@@ -101,6 +102,7 @@ const CreateGarden = () => {
                 type="text"
                 placeholder="garden number"
                 onChange={handleFieldChange}
+                data-cy="serialNumber"
                 name="serialNumber"
               />
               <label htmlFor="">Garden type</label>
@@ -108,6 +110,7 @@ const CreateGarden = () => {
                 required
                 type="text"
                 name="siteType"
+                data-cy="siteType"
                 placeholder="garden type"
                 onChange={handleFieldChange}
               />
@@ -118,13 +121,16 @@ const CreateGarden = () => {
                   <span className="slider round"></span>
                 </label>
               </div>
-              <button type="submit">Create</button>
+              <button data-cy="newGardenSubmit" type="submit">
+                Create
+              </button>
             </div>
 
             <div className="right">
               <label htmlFor="">Ground Cover</label>
               <input
                 required
+                data-cy="groundCover"
                 name="groundCover"
                 type="text"
                 placeholder="ground cover"
@@ -134,6 +140,7 @@ const CreateGarden = () => {
               <label htmlFor="">Facility image</label>
               <input
                 type="file"
+                data-cy="gardenImage"
                 name="gardenImage"
                 onChange={(e) => setFile(e.target.files[0])}
               />
@@ -145,6 +152,7 @@ const CreateGarden = () => {
               <label htmlFor="">Description</label>
               <textarea
                 placeholder="some description"
+                data-cy="desc"
                 name="desc"
                 id=""
                 cols="30"

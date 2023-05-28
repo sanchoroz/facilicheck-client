@@ -67,7 +67,6 @@ const CreateFacility = () => {
     const url = await upload(file);
 
     await postData({ ...facility, imageUrl: url, garden: selectedOption });
-    console.log("facility", facility);
     navigate("/facilities");
   };
 
@@ -87,7 +86,7 @@ const CreateFacility = () => {
         <div className="register">
           <form onSubmit={handleSubmit}>
             <div className="left">
-              <h1>Create new facility </h1>
+              <h1 data-cy="createFacilityTitle">Create new facility </h1>
               <select
                 required
                 value={selectedOption}
@@ -106,6 +105,7 @@ const CreateFacility = () => {
                 type="text"
                 placeholder="facility number"
                 name="facilityName"
+                data-cy="facilityName"
                 onChange={handleFieldChange}
               />
               <label htmlFor="">SKU</label>
@@ -114,6 +114,7 @@ const CreateFacility = () => {
                 required
                 placeholder="sku"
                 name="sku"
+                data-cy="sku"
                 onChange={handleFieldChange}
               />
               <div className="toggle">
@@ -127,9 +128,12 @@ const CreateFacility = () => {
               <input
                 type="file"
                 name="imageUrl"
+                data-cy="facilityImage"
                 onChange={(e) => setFile(e.target.files[0])}
               />
-              <button type="submit">Create</button>
+              <button type="submit" data-cy="newFacilitySubmit">
+                Create
+              </button>
             </div>
 
             <div className="right">
@@ -137,6 +141,7 @@ const CreateFacility = () => {
               <input
                 required
                 type="text"
+                data-cy="standard"
                 placeholder="standard"
                 onChange={handleFieldChange}
                 name="standard"
@@ -146,6 +151,7 @@ const CreateFacility = () => {
                 required
                 type="text"
                 name="manufacturer"
+                data-cy="manufacturer"
                 placeholder="manufacturer"
                 onChange={handleFieldChange}
               />
@@ -154,6 +160,7 @@ const CreateFacility = () => {
                 required
                 name="manufacturerType"
                 type="text"
+                data-cy="manufacturerType"
                 placeholder="Manufacturer Type"
                 onChange={handleFieldChange}
               />
@@ -162,6 +169,7 @@ const CreateFacility = () => {
                 required
                 name="basis"
                 type="text"
+                data-cy="basis"
                 placeholder="Base type"
                 onChange={handleFieldChange}
               />

@@ -30,7 +30,11 @@ const GardenCard = (props) => {
   return (
     <>
       {garden && (
-        <Card sx={{ width: 300 }} classes={{ root: "card" }}>
+        <Card
+          sx={{ width: 300 }}
+          classes={{ root: "card" }}
+          data-cy="gardenCard"
+        >
           <CardMedia
             component="img"
             alt="garden cover image"
@@ -38,16 +42,33 @@ const GardenCard = (props) => {
             image={garden.imageUrl}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="div"
+              data-cy="gardenName"
+            >
               {garden.siteName}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              data-cy="gardenAddress"
+            >
               Address: {garden.address}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              data-cy="gardenSerialNumber"
+            >
               Serial number: {garden.serialNumber}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              data-cy="gardensQty"
+            >
               Qty : {garden.facilities.length}
             </Typography>
           </CardContent>
@@ -57,9 +78,13 @@ const GardenCard = (props) => {
               state={{ stateParam: garden._id }}
               className="link"
             >
-              <Button size="medium">View</Button>
+              <Button size="medium" data-cy="gardenView">
+                View
+              </Button>
             </Link>
-            <Button size="medium">Reports</Button>
+            <Button size="medium" data-cy="gardenReports">
+              Reports
+            </Button>
             <Button
               size="medium"
               onClick={(event) => {

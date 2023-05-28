@@ -1,7 +1,11 @@
-export default class Sidebar {
-  static logout = "";
+import BasePage from "../base-page";
+export default class Sidebar extends BasePage {
+  static getCategory(category) {
+    return cy.get(`[data-cy="${category}"]`);
+  }
 
-  static doLogout() {
-    cy.get(this.logout).click();
+  static navigate(category) {
+    cy.wait(2000);
+    this.getCategory(category).click();
   }
 }

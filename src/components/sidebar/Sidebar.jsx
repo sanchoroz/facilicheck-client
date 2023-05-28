@@ -23,26 +23,38 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">Main</p>
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/" style={{ textDecoration: "none" }} data-cy="dashboard">
             <li>
               <DashboardIcon className="icon" />
               <span>Dashboard</span>
             </li>
           </Link>
           <p className="title">General</p>
-          <Link to="/gardens" style={{ textDecoration: "none" }}>
+          <Link
+            to="/gardens"
+            style={{ textDecoration: "none" }}
+            data-cy="gardens"
+          >
             <li>
               <AttractionsIcon className="icon" />
               <span>Gardens</span>
             </li>
           </Link>
-          <Link to="/facilities" style={{ textDecoration: "none" }}>
+          <Link
+            to="/facilities"
+            style={{ textDecoration: "none" }}
+            data-cy="facilities"
+          >
             <li>
               <DeckIcon className="icon" />
               <span>Facilities</span>
             </li>
           </Link>
-          <Link to="/reports" style={{ textDecoration: "none" }}>
+          <Link
+            to="/reports"
+            style={{ textDecoration: "none" }}
+            data-cy="reports"
+          >
             <li>
               <QueryStatsIcon className="icon" />
               <span>Reports</span>
@@ -53,7 +65,7 @@ const Sidebar = () => {
             <QueryStatsIcon className="icon" />
             <span>Logs</span>
           </li>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          <Link to="/users" style={{ textDecoration: "none" }} data-cy="users">
             <li>
               <GroupIcon className="icon" />
               <span>Users</span>

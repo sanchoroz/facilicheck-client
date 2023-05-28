@@ -1,11 +1,10 @@
 export default class Sidebar {
-
   static getLogoutBtn() {
-    return cy.get('[data-cy=logout-btn]');
+    return cy.get("[data-cy=logout-btn]");
   }
 
   static getTitle() {
-    return cy.get('[data-cy=home-title]');
+    return cy.get("[data-cy=home-title]");
   }
 
   static isLoaded() {
@@ -13,7 +12,7 @@ export default class Sidebar {
   }
 
   static doLogout(email, password) {
-    this.isLoaded()
+    this.isLoaded();
     this.getLogoutBtn().click();
   }
 }

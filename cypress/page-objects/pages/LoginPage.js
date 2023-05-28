@@ -21,12 +21,12 @@ export default class LoginPage extends BasePage {
     this.getTitle().should("contain", "Login");
   }
 
-  static isNotVisible(){
+  static isNotVisible() {
     this.getLoginButton().should("not.be.visible", { timeout: 3000 });
   }
 
   static doLogin(email, password) {
-    this.isLoaded()
+    this.isLoaded();
     this.getName().clear().type(email);
     this.getPassword().clear().type(password);
     this.getLoginButton().click();
